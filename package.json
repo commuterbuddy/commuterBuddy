@@ -1,0 +1,41 @@
+{
+  "name": "commuterBuddy",
+  "version": "1.0.0",
+  "description": "An application that allows users to compare commuting times and prices for two destinations.  Returning users can view and access past itineraries.",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "-w webpack",
+    "start": "nodemon './server/index.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commuterbuddy/commuterBuddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/commuterbuddy/commuterBuddy/issues"
+  },
+  "homepage": "https://github.com/commuterbuddy/commuterBuddy#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
