@@ -12,10 +12,10 @@ module.exports = {
         name: 'commuterBuddy'
       });
       
-      const start_lat = 37.761492;
-      const start_long= -122.423941;
-      const end_lat = 37.775393;
-      const end_long = -122.417546;
+      const start_lat = 33.9757652;
+      const start_long = -118.3876126;
+      const end_lat = 34.2381;
+      const end_long = -118.5301;
 
       uber.estimates.getPriceForRouteAsync(start_lat, start_long, end_lat, end_long)
         .then(data => res.status(200).send(data))
