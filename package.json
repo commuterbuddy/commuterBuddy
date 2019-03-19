@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "-w webpack",
-    "start": "nodemon './server/index.js'"
+    "start": "nodemon './server/index.js'",
+    "prod": "node server/index.js"
   },
   "repository": {
     "type": "git",
