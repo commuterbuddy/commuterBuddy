@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "-w webpack",
-    "start": "nodemon './server/index.js'"
+    "start": "nodemon './server/index.js'",
+    "prod": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,9 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
     "node-uber": "^2.0.0"
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "node-lyft": "^1.0.3"
   }
 }
