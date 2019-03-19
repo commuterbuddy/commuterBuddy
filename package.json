@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "node-uber": "^2.0.0"
+    "node-uber": "^2.0.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "node-lyft": "^1.0.3"
