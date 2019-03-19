@@ -1,10 +1,13 @@
-const {lyftToken} = require('../config.js');
+const axios = require ('axios');
+const {lyftToken, gasToken} = require('../config.js');
 const lyft = require('node-lyft');
 let lyftData;
 
 // LYFT API AUTHORIZATION
 const defaultClient = lyft.ApiClient.instance;
 defaultClient.authentications['Client Authentication'].accessToken = lyftToken;
+
+// MY GAS FEED API AUTHORIZATION
 
 module.exports = {
   lyft: {
@@ -28,6 +31,25 @@ module.exports = {
       .catch(err => {
         res.status(404).send('Error getting data', err)
       });
+    }
+  },
+  gasFeed: {
+    get: (req, res) => {
+
+      // const {startLat, startLng, 5, reg, distance, gasToken  } = req.params;
+      let startLat = 33.9626;
+      let startLng = -118.3988;
+
+      axios
+        .get('http://api.mygasfeed.com/stations/radius', {params: {
+          startLat, startLng, 5, 'reg', 'distance', gasToken}})
+        .then((data) => {
+          res.status(200).send(data)
+        })
+        .catch(err => {
+          res.status(404).send('Error getting data', err)
+        });
+
     }
   }
 };
