@@ -1,3 +1,4 @@
+const axios = require ('axios');
 const Uber = require('node-uber');
 const {
   uberServer,
@@ -12,6 +13,8 @@ let lyftData;
 // LYFT API AUTHORIZATION
 const defaultClient = lyft.ApiClient.instance;
 defaultClient.authentications['Client Authentication'].accessToken = lyftToken;
+
+// MY GAS FEED API AUTHORIZATION
 
 module.exports = {
   // this property handles client requests for uber's endpoints using various methods
@@ -50,6 +53,7 @@ module.exports = {
       };
 
       lyftPublicApi.getCost(startLat, startLng, opts)
+<<<<<<< HEAD
         .then((data) => {
           res.status(200).send(data);
         })
@@ -58,4 +62,15 @@ module.exports = {
         });
     },
   },
+=======
+      .then((data) => {
+        res.status(200).send(data)
+      })
+      .catch(err => {
+        res.status(404).send('Error getting data', err)
+      });
+    }
+  }
+
+>>>>>>> 07a40cedfc348eb96551ed9668d6e149855b134f
 };
