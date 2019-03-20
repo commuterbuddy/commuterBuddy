@@ -53,7 +53,6 @@ module.exports = {
       };
 
       lyftPublicApi.getCost(startLat, startLng, opts)
-<<<<<<< HEAD
         .then((data) => {
           res.status(200).send(data);
         })
@@ -62,15 +61,4 @@ module.exports = {
         });
     },
   },
-=======
-      .then((data) => {
-        res.status(200).send(data)
-      })
-      .catch(err => {
-        res.status(404).send('Error getting data', err)
-      });
-    }
-  }
-
->>>>>>> 07a40cedfc348eb96551ed9668d6e149855b134f
 };
