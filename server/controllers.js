@@ -1,3 +1,4 @@
+const axios = require ('axios');
 const Uber = require('node-uber');
 const { uberServer, uberClient, uberSecret, lyftToken } = require('../config.js');
 const lyft = require('node-lyft');
@@ -6,6 +7,8 @@ let lyftData;
 // LYFT API AUTHORIZATION
 const defaultClient = lyft.ApiClient.instance;
 defaultClient.authentications['Client Authentication'].accessToken = lyftToken;
+
+// MY GAS FEED API AUTHORIZATION
 
 module.exports = {
   uber: {
@@ -51,4 +54,5 @@ module.exports = {
       });
     }
   }
-}
+
+};
