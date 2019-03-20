@@ -1,7 +1,13 @@
 const axios = require ('axios');
 const Uber = require('node-uber');
-const { uberServer, uberClient, uberSecret, lyftToken } = require('../config.js');
+const {
+  uberServer,
+  uberClient,
+  uberSecret,
+  lyftToken,
+} = require('../config.js');
 const lyft = require('node-lyft');
+
 let lyftData;
 
 // LYFT API AUTHORIZATION
@@ -11,16 +17,17 @@ defaultClient.authentications['Client Authentication'].accessToken = lyftToken;
 // MY GAS FEED API AUTHORIZATION
 
 module.exports = {
+  // this property handles client requests for uber's endpoints using various methods
   uber: {
     get: (req, res) => {
-      let uber = new Uber({
+      const uber = new Uber({
         // client_id: uberClient,
         // client_secret: uberSecret,
         server_token: uberServer,
         redirect_uri: 'http://localhost:3000',
-        name: 'commuterBuddy'
+        name: 'commuterBuddy',
       });
-      
+
       const start_lat = 33.9757652;
       const start_long = -118.3876126;
       const end_lat = 34.2381;
@@ -28,24 +35,34 @@ module.exports = {
 
       uber.estimates.getPriceForRouteAsync(start_lat, start_long, end_lat, end_long)
         .then(data => res.status(200).send(data))
-        .catch(err => console.error(err))
-    }
+        .catch(err => console.error(err));
+    },
   },
+  // this property handles client requests for lyft's endpoints using various methods
   lyft: {
     get: (req, res) => {
-
       // const {startLat, startLng, endLat, endLng} = req.params;
       const lyftPublicApi = new lyft.PublicApi();
 
-      let startLat = 33.9626;
-      let startLng = -118.3988;
+      const startLat = 33.9626;
+      const startLng = -118.3988;
 
-      let opts = {
-        'endLat': 33.8366,
-        'endLng': -117.9143
+      const opts = {
+        endLat: 33.8366,
+        endLng: -117.9143,
       };
 
       lyftPublicApi.getCost(startLat, startLng, opts)
+<<<<<<< HEAD
+        .then((data) => {
+          res.status(200).send(data);
+        })
+        .catch((err) => {
+          res.status(404).send('Error getting data', err);
+        });
+    },
+  },
+=======
       .then((data) => {
         res.status(200).send(data)
       })
@@ -55,4 +72,5 @@ module.exports = {
     }
   }
 
+>>>>>>> 07a40cedfc348eb96551ed9668d6e149855b134f
 };
