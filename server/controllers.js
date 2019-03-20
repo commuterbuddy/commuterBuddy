@@ -32,25 +32,7 @@ module.exports = {
         res.status(404).send('Error getting data', err)
       });
     }
-  },
-  gasFeed: {
-    get: (req, res) => {
-
-      // const {startLat, startLng, 5, reg, distance, gasToken  } = req.params;
-      let startLat = 33.9626;
-      let startLng = -118.3988;
-
-      axios
-        .get('http://api.mygasfeed.com/stations/radius', {params: {
-          startLat, startLng, 5, 'reg', 'distance', gasToken}})
-        .then((data) => {
-          res.status(200).send(data)
-        })
-        .catch(err => {
-          res.status(404).send('Error getting data', err)
-        });
-
-    }
   }
+
 };
 
