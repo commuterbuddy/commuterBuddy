@@ -1,9 +1,15 @@
 const lyft = require('node-lyft');
+const { lyftToken } = require('../config');
+
+// LYFT API AUTHORIZATION
+const defaultClient = lyft.ApiClient.instance;
+defaultClient.authentications['Client Authentication'].accessToken = lyftToken;
+
 
 const lyftPublicApi = new lyft.PublicApi();
 
 const getLyftCost = (startLat, startLng, opts) => lyftPublicApi.getCost(startLat, startLng, opts)
-  .catch(err => console.log(err));
+  .catch(err => err);
 
 module.exports = {
   getLyftCost,
