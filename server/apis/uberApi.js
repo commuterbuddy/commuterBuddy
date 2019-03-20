@@ -1,11 +1,6 @@
 /* eslint-disable arrow-body-style */
 const Uber = require('node-uber');
-const {
-  uberServer,
-  // uberClient,
-  // uberSecret,
-  // lyftToken,
-} = require('../config');
+const { uberServer } = require('../config');
 
 const uber = new Uber({
   server_token: uberServer,
@@ -13,8 +8,8 @@ const uber = new Uber({
   name: 'commuterBuddy',
 });
 
-const getUberPrices = (startLat, startLong, endLat, endLong) => {
-  return uber.estimates.getPriceForRouteAsync(startLat, startLong, endLat, endLong)
+const getUberPrices = (startLat, startLng, endLat, endLng) => {
+  return uber.estimates.getPriceForRouteAsync(startLat, startLng, endLat, endLng)
     .catch(err => console.log(err));
 };
 
