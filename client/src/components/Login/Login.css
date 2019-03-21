@@ -1,17 +1,17 @@
 
 .container1 {
   font-family: Helvetica, Arial, sans-serif;
-  background-image: url("http://energyfuse.org/wp-content/uploads/2018/01/Traffic-1.jpg");
+  background-image: url("https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2016/06/17/103724919-GettyImages-458124028.jpg?v=1466190931");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   background-color: rgba(255, 255, 255, 0.4);
   background-blend-mode: lighten;
   height: 100%;
   width: 100%;
-  margin-left: -8px;
-  margin-top: -8px;
   overflow: hidden;
 }
 
@@ -65,6 +65,11 @@
   border-color: transparent;
   text-decoration: none;
   cursor: pointer;
+}
+
+.auth {
+  font-size: 12px;
+  color: red;
 }
 
 ::placeholder {
