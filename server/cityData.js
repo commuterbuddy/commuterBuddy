@@ -2,21 +2,23 @@
 /*
   This file will output a function that looks up
   specific cities and their coordinates/ avg gas price
+
 */
+
 
 
 const cityData = {
   'huntington beach': { lat: 33.6595, lng: -117.9988, gallon: 3.342 },
   'san bernardino': { lat: 34.1083, lng: -117.2898, gallon: 3.275 },
-  'santa clarita': { lat: 34.3917, lng: -118.5426, gallon: 3.400 },
-  'orange county': { lat: 33.7175, lng: -117.8311, gallon: 3.342 },
-  'santa barbara': { lat: 34.4208, lng: -119.6982, gallon: 3.503 },
-  'san francisco': { lat: 37.7749, lng: -122.4194, gallon: 3.542 },
-  'newport beach': { lat: 33.6189, lng: -117.9298, gallon: 3.342 },
-  'mountain view': { lat: 37.3861, lng: -122.0839, gallon: 3.542 },
-  'moreno valley': { lat: 33.9425, lng: -117.2297, gallon: 3.291 },
-  'san clemente': { lat: 33.4274, lng: -117.6126, gallon: 3.342 },
-  'laguna beach': { lat: 33.5427, lng: -117.7854, gallon: 3.342 },
+  'santa clarita': { lat: 34.3917, lng: -118.5426, gallon: 3.400 }, 
+  'orange county': { lat: 33.7175, lng: -117.8311, gallon: 3.342 },  
+  'santa barbara': { lat: 34.4208, lng: -119.6982, gallon: 3.503 },  
+  'san francisco': { lat: 37.7749, lng: -122.4194, gallon: 3.542 },  
+  'newport beach': { lat: 33.6189, lng: -117.9298, gallon: 3.342 },  
+  'mountain view': { lat: 37.3861, lng: -122.0839, gallon: 3.542 },  
+  'moreno valley': { lat: 33.9425, lng: -117.2297, gallon: 3.291 },  
+  'san clemente': { lat: 33.4274, lng: -117.6126, gallon: 3.342 },  
+  'laguna beach': { lat: 33.5427, lng: -117.7854, gallon: 3.342 },  
   'santa clara': { lat: 37.3541, lng: -121.9552, gallon: 3.542 },
   'west covina': { lat: 34.0686, lng: -117.9390, gallon: 3.400 },
   'chula vista': { lat: 32.6401, lng: -117.0842, gallon: 3.351 },
