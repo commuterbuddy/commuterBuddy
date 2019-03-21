@@ -49,8 +49,8 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div className={styles.bg}>
-        <div className={styles.container}>
+      <div className={styles.container1}>
+        <div className={styles.container2}>
           <form className={styles.login} >
           <h2>Log in or sign up</h2>
             <label className={styles.label} >
