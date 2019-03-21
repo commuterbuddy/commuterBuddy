@@ -1,0 +1,23 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(24, 133, 255);
+  z-index: 1000;
+  width: 100%;
+  overflow: hidden;
+}
+
+.links {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  padding: 10px;
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+.links:hover {
+  background-color: white;
+  color: black;
+}
