@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styles from './Navigation.css';
 
 const Nagivation = (props) => {
   return (
-    <div>
-      {/* <NavLink to='/results'>Results</NavLink>
-      <NavLink to='/history'>History</NavLink> */}
-      {props.authenticated ? <NavLink to='/'>Sign Out</NavLink> : ''}
+    <div className={styles.navbar}>
+      <NavLink to="/results" className={styles.links}>Results</NavLink>
+      <NavLink to="/history" className={styles.links}>History</NavLink>
+      <NavLink to="/" className={styles.links} style={{float: "right", marginRight: "40px"}}>Sign Out</NavLink>
     </div>
   );
 };
