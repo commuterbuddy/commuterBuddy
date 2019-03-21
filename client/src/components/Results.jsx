@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps-react';
 import { googleMapsToken } from '../../../config.js';
+import MapStyles from './MapStyles.css';
 // import ResultsStyles from '../styles/ResultsStyles.css';
 
 export class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      coordinates: '',
+      pathCoords: [
+        {lat: 33.6848, lng: -117.8265},
+        {lat: 33.8366, lng: -117.9143}
+      ],
       showingInfoWindow: false,
+      showingDistanceWindow: true,
       activeMarker: {},
       selectedPlace: {}
     };
@@ -45,28 +50,30 @@ export class Results extends Component {
 
   render() {
     const style = {
-      width: '100vw',
-      height: '100vh'
-    }
+      width: '100%',
+      height: '100%',
+      position: 'relative'
+    };
+
     return (
+      <div className={MapStyles.container}>
       <Map 
         google={this.props.google}
         onClick={this.onMapClicked}
         style={style}
-        initialCenter={{
-          lat: 34.0522,
-          lng: -118.2437   
-        }}
-        zoom={10}>
+        className={'map'}
+        initialCenter={this.state.pathCoords[0]}
+        zoom={11}>
+
         <Marker
-          title={'THIS IS THE TITLE'}
           name={'Home'}
+          position={this.state.pathCoords[0]}
           onClick={this.onHomeMarkerClick} />
 
         <Marker
 
           name={'Work'}
-          position={{lat: 33.8366, lng: -117.9143}}
+          position={this.state.pathCoords[1]}
           onClick={this.onWorkMarkerClick} />
           
         <InfoWindow
@@ -77,7 +84,21 @@ export class Results extends Component {
             </div>
         </InfoWindow>
 
+        <Polyline
+          path={this.state.pathCoords}
+          options={{
+            strokeColor: "#1885FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 4,            
+          }}
+        />
+
       </Map>
+
+      <div className={MapStyles.distancePop}>
+        <h1>Distance: 500 miles</h1>
+      </div>
+      </div>
     )
   }
 }
