@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styles from './Login.css';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import styles from './Login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -10,32 +11,12 @@ class Login extends Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSignup = this.handleSignup.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
-
-  handleSignup(e) {
-    e.preventDefault();
-    const { username, password } = this.state;
-    axios
-      .post('/api/auth', { params: { username, password }})
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }
-
-  handleLogin(e) {
-    e.preventDefault();
-    const { username, password } = this.state;
-    axios
-      .get('/api/auth', { params: { username, password }})
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
   }
 
   validateForm() {
@@ -51,9 +32,9 @@ class Login extends Component {
     return (
       <div className={styles.container1}>
         <div className={styles.container2}>
-          <form className={styles.login} >
-          <h2>Log in or sign up</h2>
-            <label className={styles.label} >
+          <form className={styles.login}>
+            <h2>Log in or sign up</h2>
+            <label className={styles.label}>
               <input
                 className={styles.input}
                 name="username"
@@ -63,7 +44,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <label className={styles.label} >
+            <label className={styles.label}>
               <input
                 className={styles.input}
                 name="password"
@@ -73,23 +54,29 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </label>
+            <div className={styles.auth}>
+              {this.props.authenticated === 'failed' ? 'Please enter the correct email/password combination' : ''}
+            </div>
             <br />
-            <button
-              type="submit"
-              onClick={this.handleSignup}
-              disabled={!this.validateForm()}
-              className={styles.button}
-            >
-              Sign up
-            </button>
-            <button
-              type="submit"
-              onClick={this.handleLogin}
-              disabled={!this.validateForm()}
-              className={styles.button}
-            >
-              Log in
-            </button>
+            <Link to="/results" className={styles.button}>
+              <button
+                type="submit"
+                onClick={this.handleSignup}
+                // disabled={!this.validateForm()}
+                className={styles.button}
+              >
+                Sign up
+              </button>
+            </Link>
+            <Link to="/results" className={styles.button}>
+              <button
+                type="submit"
+                // disabled={!this.validateForm()}
+                className={styles.button}
+              >
+                Log in
+              </button>
+            </Link>
           </form>
         </div>
       </div>
