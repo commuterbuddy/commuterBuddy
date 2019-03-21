@@ -97,7 +97,4 @@ const getPrice = async (startCity, endCity, mpg = 25) => {
     costPerGallon,
   };
 };
-
-getPrice('corona', 'anaheim').then(obj => console.log(obj));
-
 module.exports = getPrice;

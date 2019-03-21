@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const parser = require('body-parser');
 const routes = require('./routes.js');
-const { findCityCoordsAndGas } = require('./cityData');
+// const { findCityCoordsAndGas } = require('./cityData');
 
 const PORT = 3000;
 

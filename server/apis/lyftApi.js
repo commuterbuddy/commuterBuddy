@@ -1,5 +1,5 @@
 const lyft = require('node-lyft');
-const { lyftToken } = require('../../config.js');
+const { lyftToken } = require('../config.js');
 
 // LYFT API AUTHORIZATION
 const defaultClient = lyft.ApiClient.instance;
