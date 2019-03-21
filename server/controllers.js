@@ -24,7 +24,6 @@ module.exports = {
       const startLng = -118.3988;
       const opts = { endLat: 33.8366, endLng: -117.9143 };
 
-      // lyftPublicApi.getCost(startLat, startLng, opts)
       getLyftCost(startLat, startLng, opts)
         .then((data) => {
           res.status(200).send(data);

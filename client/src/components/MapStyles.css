@@ -1,0 +1,11 @@
+.distancePop {
+  width: 22%;
+  height: 10%;
+  position: absolute;
+  margin-top: 30%;
+  margin-bottom: 10%;
+  margin-left: 60%;
+  z-index: 5;
+  background-color: rgba(22, 176, 232, 0.5);
+  text-align: center;
+}
