@@ -1,11 +1,11 @@
-const { getLyftCost } = require('./apis/lyftApi');
+const { getLyftPrices } = require('./apis/lyftApi');
 const { getUberPrices } = require('./apis/uberApi');
+const getPrice = require('./apis/price');
 
 module.exports = {
   // this property handles client requests for uber's endpoints using various methods
   uber: {
     get: (req, res) => {
-
       const startLat = 33.9757652;
       const startLng = -118.3876126;
       const endLat = 34.2381;
@@ -20,11 +20,11 @@ module.exports = {
   lyft: {
     get: (req, res) => {
       // const {startLat, startLng, endLat, endLng} = req.params;
-      const startLat = 33.9626;
-      const startLng = -118.3988;
-      const opts = { endLat: 33.8366, endLng: -117.9143 };
+      const startLat = 33.9757652;
+      const startLng = -118.3876126;
+      const opts = { endLat: 34.2381, endLng: -118.5301 };
 
-      getLyftCost(startLat, startLng, opts)
+      getLyftPrices(startLat, startLng, opts)
         .then((data) => {
           res.status(200).send(data);
         })

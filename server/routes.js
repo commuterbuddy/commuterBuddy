@@ -24,7 +24,7 @@ const controllers = require('./controllers.js');
                     statusCode: 403 //bad
     prices:
       -get - get all the prices from the rideshare apis
-        -params: { startCity, endCity }
+        -params: { startCity, endCity, mpg }
         -response:  statusCode 200
                     body = { startCoord, endCoord, prices } //good
                     statusCode 404 //bad city doesnt exist
