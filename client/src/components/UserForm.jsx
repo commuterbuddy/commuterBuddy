@@ -17,7 +17,7 @@ class UserForm extends Component {
         <form>
           <label>
             Home:
-            <input type="select" name="homeCounty" />
+            <select type="select" name="homeCounty" />
           </label>
           <label>
             Work:
