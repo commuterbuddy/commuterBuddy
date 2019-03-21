@@ -1,0 +1,78 @@
+
+.container1 {
+  font-family: Helvetica, Arial, sans-serif;
+  background-image: url("https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2016/06/17/103724919-GettyImages-458124028.jpg?v=1466190931");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: lighten;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.login {
+  margin: auto;
+  margin-top: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  max-width: 340px;
+  min-height: 450px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+}
+
+.label {
+  display: block;
+  letter-spacing: -.4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input {
+  margin-bottom: 7px;
+  width: 100%;
+  min-height: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+
+.button {
+  margin-bottom: 7px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  background-color: rgb(24, 133, 255);
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth {
+  font-size: 12px;
+  color: red;
+}
+
+::placeholder {
+  padding: .25em;
+  color: gray;
+}
