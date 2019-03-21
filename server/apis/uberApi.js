@@ -9,8 +9,7 @@ const uber = new Uber({
 });
 
 const getUberPrices = (startLat, startLng, endLat, endLng) => {
-  return uber.estimates.getPriceForRouteAsync(startLat, startLng, endLat, endLng)
-    .catch(err => console.log(err));
+  return uber.estimates.getPriceForRouteAsync(startLat, startLng, endLat, endLng);
 };
 
 module.exports = {

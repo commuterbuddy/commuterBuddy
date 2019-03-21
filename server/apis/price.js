@@ -1,29 +1,5 @@
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
-/*
-this file makes the object that will contain the pricing to send back
-i am thinking that this file should export a class of prize?
-with methods that fill it out? what could go wrong?
-async functions dont play nice? i only need to calc them once
-/*
-Prices = {
-  startCoords: { startLat, startLng },
-  endCoords: { endLat, endLng },
-  distance: int,
-  uber: {
-    'X': '$10',
-    'Lux': '$55',
-  },
-
-  lyft: {
-    'Line': '$12',
-    'Premier': '$45',
-  },
-
-  gas: '$18',
-  avgGallon: 3.50,
-  bird: '$30',
-}
-*/
 
 const { getUberPrices } = require('./uberApi');
 const { getLyftPrices } = require('./lyftApi');
@@ -34,7 +10,7 @@ const getAllUberLinesAndPrices = (uberPriceArray) => {
   // extracting the clean name of the ride line and price
   // returning a nice object for prices
   const uberObj = {};
-
+  if (uberPriceArray === undefined) return uberObj;
   uberPriceArray.forEach(({ display_name, high_estimate }) => {
     uberObj[display_name] = `$${high_estimate * 2}`;
   });
@@ -75,11 +51,15 @@ const getPrice = async (startCity, endCity, mpg = 25) => {
   const { lat: endLat, lng: endLng } = findCityCoordsAndGas(endCity);
 
   // uber api return array
-  const { prices: uberPrices } = await getUberPrices(startLat, startLng, endLat, endLng);
+  const { prices: uberPrices } = await getUberPrices(startLat, startLng, endLat, endLng)
+    .catch((err) => {
+      console.log(err, 'in getPrice');
+      return [];
+    });
   // lyft api return array
   const { cost_estimates: lyftPrices } = await getLyftPrices(startLat, startLng, { endLat, endLng });
-  const distance = uberPrices[0].distance * 2;
-  const duration = (uberPrices[0].duration / 60) * 2;
+  const distance = lyftPrices[0].estimated_distance_miles * 2;
+  const duration = (lyftPrices[0].estimated_duration_seconds / 60) * 2;
 
   const uberRides = getAllUberLinesAndPrices(uberPrices);
   const lyftRides = getAllLyftLinesAndPrices(lyftPrices);
