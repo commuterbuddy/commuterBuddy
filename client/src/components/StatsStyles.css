@@ -1,0 +1,7 @@
+.statsContainer {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #000000;
+}

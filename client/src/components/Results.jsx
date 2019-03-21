@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps-react';
 import { googleMapsToken } from '../../../config.js';
 import MapStyles from './MapStyles.css';
-// import ResultsStyles from '../styles/ResultsStyles.css';
+import UserForm from './UserForm.jsx';
+import Stats from './Stats.jsx';
 
 export class Results extends Component {
   constructor(props) {
@@ -52,52 +53,61 @@ export class Results extends Component {
     const style = {
       width: '100%',
       height: '100%',
-      position: 'relative'
+      position: 'absolute'
     };
 
     return (
+    
       <div className={MapStyles.container}>
-      <Map 
-        google={this.props.google}
-        onClick={this.onMapClicked}
-        style={style}
-        className={'map'}
-        initialCenter={this.state.pathCoords[0]}
-        zoom={11}>
 
-        <Marker
-          name={'Home'}
-          position={this.state.pathCoords[0]}
-          onClick={this.onHomeMarkerClick} />
+        <UserForm className={MapStyles.formContainer} />
+        
+        <div className={MapStyles.mapContainer} >          
+          <Map 
+            google={this.props.google}
+            onClick={this.onMapClicked}
+            style={style}
+            className={'map'}
+            initialCenter={this.state.pathCoords[0]}
+            zoom={11}>
 
-        <Marker
+            <Marker
+              name={'Home'}
+              position={this.state.pathCoords[0]}
+              onClick={this.onHomeMarkerClick} />
 
-          name={'Work'}
-          position={this.state.pathCoords[1]}
-          onClick={this.onWorkMarkerClick} />
+            <Marker
+              name={'Work'}
+              position={this.state.pathCoords[1]}
+              onClick={this.onWorkMarkerClick} />
           
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+              <div>
+                <h1>{this.state.selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
 
-        <Polyline
-          path={this.state.pathCoords}
-          options={{
-            strokeColor: "#1885FF",
-            strokeOpacity: 0.8,
-            strokeWeight: 4,            
-          }}
-        />
+            <Polyline
+              path={this.state.pathCoords}
+              options={{
+                strokeColor: "#1885FF",
+                strokeOpacity: 0.8,
+                strokeWeight: 4,            
+              }}
+            />
 
-      </Map>
+          </Map>
+        </div>
 
-      <div className={MapStyles.distancePop}>
-        <h1>Distance: 500 miles</h1>
-      </div>
+        <div className={MapStyles.distancePop}>
+          <h1>Distance: 500 miles</h1>
+        </div>
+        
+        <Stats className={MapStyles.statsContainer} />
+
+
       </div>
     )
   }

@@ -1,3 +1,39 @@
+.container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.mapContainer {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.formContainer {
+  grid-column-start: 1;
+  grid-column-end: 2; 
+  z-index: 6;
+  background-color: rgba(22, 176, 232, 0.6);
+  border-width: 3px;
+  border-style: solid;
+  border-color: #000000;
+  height: 35em;
+}
+
+.statsContainer {
+  background-color: rgba(22, 176, 232, 1.0);
+  z-index: 7;
+  height: 20em;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #000000;
+}
+
+
 .distancePop {
   width: 22%;
   height: 10%;

@@ -1,12 +1,37 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserFormStyles from './UserFormStyles.css';
 
 class UserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName:
+      county: '',
+      city: '',
+      mpg: 0
     }
   }
+
+  render() {
+    return (
+      <div className={this.props.className}>
+        <form>
+          <label>
+            Home:
+            <input type="select" name="homeCounty" />
+          </label>
+          <label>
+            Work:
+            <input type="select" name="workCounty" />
+          </label>
+          <label>
+            Average Miles Per Gallon (MPG):
+            <input type="text" name="mpg" />
+          </label>
+        </form>
+      </div>
+
+    )
+  }
 }
+
+export default UserForm;
