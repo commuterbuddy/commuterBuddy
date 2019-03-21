@@ -16,9 +16,6 @@
   grid-column-end: 2; 
   z-index: 6;
   background-color:  #ADD8E6;
-  border-width: 3px;
-  border-style: solid;
-  border-color: ;
   height: 35em;
 }
 
@@ -28,9 +25,6 @@
   height: 20em;
   grid-column-start: 1;
   grid-column-end: 5;
-  border-width: 3px;
-  border-style: solid;
-  border-color: #000000;
 }
 
 
