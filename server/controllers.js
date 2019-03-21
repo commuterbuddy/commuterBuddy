@@ -3,6 +3,21 @@ const { getUberPrices } = require('./apis/uberApi');
 const getPrice = require('./apis/price');
 
 module.exports = {
+  getPrices: (req, res) => {
+    const { startCity, endCity, mpg } = req.body;
+    // const startCity = 'corona';
+    // const endCity = 'anaheim';
+    // const mpg = 20;
+    
+    getPrice(startCity, endCity, mpg)
+      .then((price) => {
+        res.status(200).send(price);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(404).send(err);
+      });
+  },
   // this property handles client requests for uber's endpoints using various methods
   uber: {
     get: (req, res) => {
