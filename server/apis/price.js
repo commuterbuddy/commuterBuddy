@@ -9,24 +9,30 @@ const getAllUberLinesAndPrices = (uberPriceArray) => {
   // this function iterates through the uber price array
   // extracting the clean name of the ride line and price
   // returning a nice object for prices
-  const uberObj = {};
-  if (uberPriceArray === undefined) return uberObj;
+  const uberArr = [];
+  if (uberPriceArray === undefined) return uberArr;
   uberPriceArray.forEach(({ display_name, high_estimate }) => {
-    uberObj[display_name] = `$${high_estimate * 2}`;
+    uberArr.push({
+      name: display_name,
+      price: `$${high_estimate * 2}`,
+    });
   });
 
-  return uberObj;
+  return uberArr;
 };
 
 const getAllLyftLinesAndPrices = (lyftPriceArray) => {
-  const lyftObj = {};
+  const lyftArr = [];
 
   lyftPriceArray.forEach(({ display_name, estimated_cost_cents_max }) => {
     const high_estimate = `$${(estimated_cost_cents_max / 100) * 2}`;
-    lyftObj[display_name] = high_estimate;
+    lyftArr.push({
+      name: display_name,
+      price: high_estimate,
+    });
   });
 
-  return lyftObj;
+  return lyftArr;
 };
 
 const getDailyGasCost = (distance, mpg, costPerGallon) => {
