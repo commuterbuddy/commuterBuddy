@@ -11,12 +11,19 @@ class Login extends Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  handleSubmit() {
+    const { username } = this.state;
+    localStorage.setItem('user', username);
+    this.props.authenticate();
   }
 
   validateForm() {
@@ -63,6 +70,7 @@ class Login extends Component {
                 type="submit"
                 // disabled={!this.validateForm()}
                 className={styles.button}
+                onClick={this.handleSubmit}
               >
                 Sign up
               </button>
@@ -72,7 +80,7 @@ class Login extends Component {
                 type="submit"
                 // disabled={!this.validateForm()}
                 className={styles.button}
-                onClick={localStorage.setItem('user', username)}
+                onClick={this.handleSubmit}
               >
                 Log in
               </button>

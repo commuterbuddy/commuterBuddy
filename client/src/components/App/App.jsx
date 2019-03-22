@@ -14,14 +14,15 @@ class App extends Component {
     this.handleAuthenticate = this.handleAuthenticate.bind(this);
   }
 
-  handleAuthenticate(status) {
+  handleAuthenticate() {
+    const { authenticated } = this.state;
     this.setState({
-      authenticated: status
+      authenticated: !authenticated
     });
   }
 
   render() {
-    let { authenticated } = this.state;
+    const { authenticated } = this.state;
     return (
       <BrowserRouter>
         <Navigation authenticated={authenticated} />
