@@ -8,6 +8,10 @@
   overflow: hidden;
 }
 
+.hide {
+  display: none;
+}
+
 .links {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 17px;
