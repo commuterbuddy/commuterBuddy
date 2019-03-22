@@ -8,6 +8,8 @@ module.exports = [
       "endLat": 37.8044,
       "endLng": -122.2711
     },
+    "startCity": "Northridge",
+    "endCity": "Irvine",
     "birdPrice": "$68",
     "distance": 71.52,
     "uberRides": [
@@ -72,7 +74,7 @@ module.exports = [
     ],
     "dailyGasCost": "$13",
     "costPerGallon": 3.542,
-    "scenarioName": "My expensive commute"
+    "tripName": "My expensive commute"
    },
    {
     "startCoords": {
@@ -83,6 +85,8 @@ module.exports = [
       "endLat": 37.8044,
       "endLng": -122.2711
     },
+    "startCity": "Westchester",
+    "endCity": "Long Beach",
     "birdPrice": "$68",
     "distance": 71.52,
     "uberRides": [
@@ -145,8 +149,8 @@ module.exports = [
         "price": "$1"
       }
     ],
-    "dailyGasCost": "$69",
+    "dailyGasCost": "$22",
     "costPerGallon": 4.20,
-    "scenarioName": "Another expensive commute"
+    "tripName": "Another expensive commute"
    }
 ]
