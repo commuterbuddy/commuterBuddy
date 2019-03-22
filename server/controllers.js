@@ -2,7 +2,7 @@ const getPrice = require('./apis/price');
 
 module.exports = {
   getPrices: (req, res) => {
-    const { startCity, endCity, mpg } = req.body;
+    const { startCity, endCity, mpg } = req.query;
     // const startCity = 'corona';
     // const endCity = 'anaheim';
     // const mpg = 20;

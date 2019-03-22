@@ -10,18 +10,31 @@ export class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pathCoords: [
-        {lat: 33.6848, lng: -117.8265},
-        {lat: 33.8366, lng: -117.9143}
-      ],
+      startCoords: undefined,
+      endCoords: undefined,
       showingInfoWindow: false,
       showingDistanceWindow: true,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      homeCounty: '',
+      workCounty: '',
+      startCity: '',
+      endCity: '',
+      mpg: 0,
+      distance: 0,
+      lyftRides: [],
+      uberRides: [],
+      birdPrice: 0,
+      dailyGasCost: 0,
+      costPerGallon: 0
     };
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
     this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleHomeChange = this.handleHomeChange.bind(this);
+    this.handleWorkChange = this.handleWorkChange.bind(this);
+    this.handleGasChange = this.handleGasChange.bind(this);
   }
 
   onHomeMarkerClick(props, marker, event) {
@@ -47,7 +60,74 @@ export class Results extends Component {
         activeMarker: null
       })
     }
-  }  
+  }
+
+  handleHomeChange(event) {
+    if (this.state.homeCounty.length > 1) {
+      this.setState({
+        startCity: event.target.value
+      })
+    } else {
+      this.setState({
+        homeCounty: event.target.value
+      })
+    }
+  }
+
+  handleWorkChange(event) {
+    if (this.state.workCounty.length > 1) {
+      this.setState({
+        endCity: event.target.value
+      })
+    } else {
+      this.setState({
+        workCounty: event.target.value
+      })
+    }
+  }
+
+  handleGasChange(event) {
+    let mpg = parseInt(event.target.value);
+    this.setState({
+      mpg: mpg
+    });
+  }
+
+
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const {startCity, endCity, mpg} = this.state;
+
+    console.log('THESE ARE THE PARAMS------------', startCity, endCity, mpg);
+
+    axios
+      .get('/api/prices', {params: {startCity, endCity, mpg}})
+      .then(({data}) => {
+        this.setState({
+          lyftRides: data.lyftRides,
+          uberRides: data.uberRides,
+          distance: data.distance,
+          birdPrice: data.birdPrice,
+          dailyGasCost: data.dailyGasCost,
+          costPerGallon: data.costPerGallon,
+          startCoords: {lat: data.startCoords.startLat, lng: data.startCoords.startLng},
+          endCoords: {lat: data.endCoords.endLat, lng: data.endCoords.endLng}
+        })
+      })
+      .catch(err => {
+        console.log('Error getting data', err)
+      });
+  }
+
+  getMidpoint(start, end) {
+
+    const lat = ((start.lat + end.lat) / 2);
+    const lng = ((start.lng + end.lng) / 2);
+
+    return {lat, lng};
+  }
+  
 
   render() {
     const style = {
@@ -56,11 +136,20 @@ export class Results extends Component {
       position: 'absolute'
     };
 
+    const centerCoords = this.state.startCoords ? this.getMidpoint(this.state.startCoords, this.state.endCoords) : null;
+
     return (
     
       <div className={MapStyles.container}>
 
-        <UserForm className={MapStyles.formContainer} />
+        <UserForm 
+          className={MapStyles.formContainer} 
+          submit={this.handleSubmit}
+          handleHomeChange={this.handleHomeChange}
+          handleWorkChange={this.handleWorkChange}
+          handleGasChange={this.handleGasChange}
+          homeCounty={this.state.homeCounty}
+          workCounty={this.state.workCounty} />
         
         <div className={MapStyles.mapContainer} >          
           <Map 
@@ -68,17 +157,18 @@ export class Results extends Component {
             onClick={this.onMapClicked}
             style={style}
             className={'map'}
-            initialCenter={this.state.pathCoords[0]}
+            initialCenter={{lat: 34.0522, lng: -118.2437}}
+            center={centerCoords}
             zoom={11}>
 
             <Marker
               name={'Home'}
-              position={this.state.pathCoords[0]}
+              position={this.state.startCoords}
               onClick={this.onHomeMarkerClick} />
 
             <Marker
               name={'Work'}
-              position={this.state.pathCoords[1]}
+              position={this.state.endCoords}
               onClick={this.onWorkMarkerClick} />
           
             <InfoWindow
@@ -90,7 +180,7 @@ export class Results extends Component {
             </InfoWindow>
 
             <Polyline
-              path={this.state.pathCoords}
+              path={[this.state.startCoords, this.state.endCoords]}
               options={{
                 strokeColor: "#1885FF",
                 strokeOpacity: 0.8,

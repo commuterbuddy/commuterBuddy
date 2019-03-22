@@ -4,7 +4,7 @@ const Sacramento = (props) => {
   return (
     <select id="city" onChange={(event) => props.change(event)}>
       <option value="Start">Choose your city</option>
-      <option value="Sacramento">Sacramento</option>
+      <option value="sacramento">Sacramento</option>
     </select>
 
   );
