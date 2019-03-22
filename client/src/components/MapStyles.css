@@ -8,7 +8,7 @@
 
 .mapContainer {
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 4;
 }
 
 .formContainer {
@@ -25,6 +25,12 @@
   height: 20em;
   grid-column-start: 1;
   grid-column-end: 5;
+}
+
+.statsFlex {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
 }
 
 
