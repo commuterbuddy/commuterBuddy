@@ -104,6 +104,7 @@ export class Results extends Component {
   }
 
   handleTripSubmit(event) {
+    event.preventDefault();
 
     const {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
@@ -163,8 +164,8 @@ export class Results extends Component {
 
 
     const style = {
-      width: '100%',
-      height: '100%',
+      width: '75%',
+      height: '75%',
       position: 'absolute'
     };
 
