@@ -4,13 +4,13 @@ const SanDiego = (props) => {
   return (
     <select id="city" onChange={(event) => props.change(event)}>
       <option value="Start">Choose your city</option>
-      <option value="Escondido">Escondido</option>
-      <option value="El Cajon">El Cajon</option>
-      <option value="Carlsbad">Carlsbad</option>
-      <option value="Chula Vista">Chula Vista</option>
-      <option value="Oceanside">Oceanside</option>
-      <option value="San Diego">San Diego</option>
-      <option value="Vista">Vista</option>
+      <option value="escondido">Escondido</option>
+      <option value="el cajon">El Cajon</option>
+      <option value="carlsbad">Carlsbad</option>
+      <option value="chula vista">Chula Vista</option>
+      <option value="oceanside">Oceanside</option>
+      <option value="san diego">San Diego</option>
+      <option value="vista">Vista</option>
     </select>
 
   );

@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 const Uber = require('node-uber');
-const { uberServer } = require('../config.js');
+const { uberServer } = require('../../config.js');
 
 const uber = new Uber({
   server_token: uberServer,

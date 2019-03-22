@@ -4,11 +4,11 @@ const Riverside = (props) => {
   return (
     <select id="city" onChange={(event) => props.change(event)}>
       <option value="Start">Choose your city</option>
-      <option value="Corona">Corona</option>
-      <option value="Moreno Valley">Moreno Valley</option>
-      <option value="Murrieta">Murrieta</option>
-      <option value="Riverside">Riverside</option>
-      <option value="Temecula">Temecula</option>
+      <option value="corona">Corona</option>
+      <option value="moreno valley">Moreno Valley</option>
+      <option value="murrieta">Murrieta</option>
+      <option value="riverside">Riverside</option>
+      <option value="temecula">Temecula</option>
     </select>
 
   );
