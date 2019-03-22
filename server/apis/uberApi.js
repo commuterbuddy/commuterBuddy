@@ -1,9 +1,9 @@
 /* eslint-disable arrow-body-style */
 const Uber = require('node-uber');
-const { uberServer } = require('../../config.js');
+const { uberToken } = require('../../config.js');
 
 const uber = new Uber({
-  server_token: uberServer,
+  server_token: uberToken,
   redirect_uri: 'http://localhost:3000',
   name: 'commuterBuddy',
 });
