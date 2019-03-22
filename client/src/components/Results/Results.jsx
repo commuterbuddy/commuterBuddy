@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps-react';
-import { googleMapsToken } from '../../../config.js';
+import { googleMapsToken } from '../../../../config.js';
 import MapStyles from './MapStyles.css';
-import UserForm from './UserForm.jsx';
-import Statistics from './Statistics.jsx';
+import UserForm from '../UserForm/UserForm.jsx';
+import Statistics from '../Statistics/Statistics.jsx';
 
 export class Results extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ export class Results extends Component {
       tripName: '',
       userName: 'Jun'
     };
+
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
     this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
@@ -178,18 +179,18 @@ export class Results extends Component {
     const centerCoords = startCoords ? this.getMidpoint(startCoords, endCoords) : null;
 
     let points;
+    let bounds;
 
     if (startCoords) {
       points = [
         startCoords, endCoords
       ];
-    } else {
-      points = [{lat: 34.0522, lng: -118.2437}];
-    }
-    
-    let bounds = new this.props.google.maps.LatLngBounds();
-    for (var i = 0; i < points.length; i++) {
-      bounds.extend(points[i]);
+    // } else {
+      // points = [{lat: 34.0522, lng: -118.2437}];
+      bounds = new this.props.google.maps.LatLngBounds();
+      for (var i = 0; i < points.length; i++) {
+        bounds.extend(points[i]);
+      }
     }
 
     return (
@@ -214,7 +215,7 @@ export class Results extends Component {
             style={style}
             className={'map'}
             initialCenter={{lat: 34.0522, lng: -118.2437}}
-            bounds={bounds}
+            bounds={this.state.startCoords ? bounds : null}
             >
 
             <Marker
