@@ -1,4 +1,6 @@
 .container {
+  margin-top: 0px;
+  padding-top: 37px;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   z-index: 1;
@@ -38,9 +40,9 @@
   width: 22%;
   height: 10%;
   position: absolute;
-  margin-top: 30%;
-  margin-bottom: 10%;
-  margin-left: 60%;
+  margin-top: 10px;
+  margin-bottom: 35%;
+  margin-left: 70%;
   z-index: 5;
   background-color: rgba(22, 176, 232, 0.5);
   text-align: center;
