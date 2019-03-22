@@ -34,5 +34,8 @@ router
   .route('/prices')
   .get(controllers.getPrices);
 
+router
+  .route('/scenarios')
+  .get(controllers.getScenarios);
 
 module.exports = router;
