@@ -1,5 +1,6 @@
 const getPrice = require('./apis/price');
-
+const dummyData = require('./dummyData.js')
+;
 module.exports = {
   getPrices: (req, res) => {
     const { startCity, endCity, mpg } = req.body;
@@ -16,4 +17,7 @@ module.exports = {
         res.status(404).send(err);
       });
   },
+  getScenarios: (req, res) => {
+    res.status(200).send(dummyData)
+  }
 };
