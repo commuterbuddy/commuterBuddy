@@ -25,7 +25,7 @@ class UserForm extends Component {
         <form>
           <label>
             Home:
-            <select id="homeCounty" onChange={this.props.handleHomeChange}>
+            <select id="homeCounty" onChange={this.props.handleHomeCountyChange}>
               <option value="Start">Choose your county</option>
               <option value="alameda" >Alameda</option>
               <option value="los angeles" >Los Angeles</option>
@@ -42,22 +42,22 @@ class UserForm extends Component {
           
           <label>
             City:
-            {this.props.homeCounty === 'alameda' ? <Alameda change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'los angeles' ? <LosAngeles change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'orange' ? <Orange change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'riverside' ? <Riverside change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'sacramento' ? <Sacramento change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'san bernardino' ? <SanBernardino change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'san diego' ? <SanDiego change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'san francisco' ? <SanFrancisco change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'santa barbara' ? <SantaBarbara change={this.props.handleHomeChange} /> :
-            this.props.homeCounty === 'santa clara' ? <SantaClara change={this.props.handleHomeChange} /> : null}
+            {this.props.homeCounty === 'alameda' ? <Alameda change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'los angeles' ? <LosAngeles change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'orange' ? <Orange change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'riverside' ? <Riverside change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'sacramento' ? <Sacramento change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'san bernardino' ? <SanBernardino change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'san diego' ? <SanDiego change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'san francisco' ? <SanFrancisco change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'santa barbara' ? <SantaBarbara change={this.props.handleHomeCityChange} /> :
+            this.props.homeCounty === 'santa clara' ? <SantaClara change={this.props.handleHomeCityChange} /> : null}
           </label>
 
           <br /><br />
           <label>
             Work:
-              <select id="workCounty" onChange={this.props.handleWorkChange}>
+              <select id="workCounty" onChange={this.props.handleWorkCountyChange}>
                 <option value="Start">Choose your county</option>
                 <option value="alameda">Alameda</option>
                 <option value="los angeles">Los Angeles</option>
@@ -74,16 +74,16 @@ class UserForm extends Component {
 
           <label>
             City:
-            {this.props.workCounty === 'alameda' ? <Alameda change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'los angeles' ? <LosAngeles change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'orange' ? <Orange change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'riverside' ? <Riverside change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'sacramento' ? <Sacramento change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'san bernardino' ? <SanBernardino change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'dan diego' ? <SanDiego change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'san francisco' ? <SanFrancisco change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'santa barbara' ? <SantaBarbara change={this.props.handleWorkChange} /> :
-            this.props.workCounty === 'santa clara' ? <SantaClara change={this.props.handleWorkChange} /> : null}
+            {this.props.workCounty === 'alameda' ? <Alameda change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'los angeles' ? <LosAngeles change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'orange' ? <Orange change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'riverside' ? <Riverside change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'sacramento' ? <Sacramento change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'san bernardino' ? <SanBernardino change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'san diego' ? <SanDiego change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'san francisco' ? <SanFrancisco change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'santa barbara' ? <SantaBarbara change={this.props.handleWorkCityChange} /> :
+            this.props.workCounty === 'santa clara' ? <SantaClara change={this.props.handleWorkCityChange} /> : null}
           </label>
 
           <br /><br />

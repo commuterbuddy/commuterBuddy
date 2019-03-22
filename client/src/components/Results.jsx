@@ -34,8 +34,10 @@ export class Results extends Component {
     this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleHomeChange = this.handleHomeChange.bind(this);
-    this.handleWorkChange = this.handleWorkChange.bind(this);
+    this.handleHomeCountyChange = this.handleHomeCountyChange.bind(this);
+    this.handleHomeCityChange = this.handleHomeCityChange.bind(this);
+    this.handleWorkCountyChange = this.handleWorkCountyChange.bind(this);
+    this.handleWorkCityChange = this.handleWorkCityChange.bind(this);
     this.handleGasChange = this.handleGasChange.bind(this);
     this.handleTripChange = this.handleTripChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
@@ -66,28 +68,28 @@ export class Results extends Component {
     }
   }
 
-  handleHomeChange(event) {
-    if (this.state.homeCounty.length > 1) {
-      this.setState({
-        startCity: event.target.value
-      })
-    } else {
-      this.setState({
-        homeCounty: event.target.value
-      })
-    }
+  handleHomeCountyChange(event) {
+    this.setState({
+      homeCounty: event.target.value
+    })
   }
 
-  handleWorkChange(event) {
-    if (this.state.workCounty.length > 1) {
-      this.setState({
-        endCity: event.target.value
-      })
-    } else {
-      this.setState({
-        workCounty: event.target.value
-      })
-    }
+  handleHomeCityChange(event) {
+    this.setState({
+      startCity: event.target.value
+    })
+  }
+
+  handleWorkCountyChange(event) {
+    this.setState({
+      workCounty: event.target.value
+    })
+  }
+
+  handleWorkCityChange(event) {
+    this.setState({
+      endCity: event.target.value
+    })
   }
 
   handleTripChange(event) {
@@ -128,7 +130,7 @@ export class Results extends Component {
 
     console.log('THESE ARE THE PARAMS------------', startCity, endCity, mpg);
 
-        axios
+    axios
       .get('/api/prices', {params: {startCity, endCity, mpg}})
       .then(({data}) => {
         this.setState({
@@ -142,6 +144,11 @@ export class Results extends Component {
           endCoords: {lat: data.endCoords.endLat, lng: data.endCoords.endLng}
         })
       })
+      .then(() => {
+        if (!this.state.distance) {
+          alert('Sorry, your commute is too far!  Time to move...');
+        }
+      })
       .catch(err => {
         console.log('Error getting data', err)
       });
@@ -152,10 +159,6 @@ export class Results extends Component {
     const lng = ((start.lng + end.lng) / 2);
     return {lat, lng};
   }
-
-
-  
-
 
   render() {
     const carObj = {
@@ -196,8 +199,10 @@ export class Results extends Component {
         <UserForm 
           className={MapStyles.formContainer} 
           submit={this.handleSubmit}
-          handleHomeChange={this.handleHomeChange}
-          handleWorkChange={this.handleWorkChange}
+          handleHomeCountyChange={this.handleHomeCountyChange}
+          handleHomeCityChange={this.handleHomeCityChange}
+          handleWorkCountyChange={this.handleWorkCountyChange}
+          handleWorkCityChange={this.handleWorkCityChange}
           handleGasChange={this.handleGasChange}
           homeCounty={this.state.homeCounty}
           workCounty={this.state.workCounty} />
