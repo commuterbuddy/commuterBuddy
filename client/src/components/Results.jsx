@@ -4,7 +4,7 @@ import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps
 import { googleMapsToken } from '../../../config.js';
 import MapStyles from './MapStyles.css';
 import UserForm from './UserForm.jsx';
-import Stats from './Stats.jsx';
+import Statistics from './Statistics.jsx';
 
 export class Results extends Component {
   constructor(props) {
@@ -26,7 +26,9 @@ export class Results extends Component {
       uberRides: [],
       birdPrice: 0,
       dailyGasCost: 0,
-      costPerGallon: 0
+      costPerGallon: 0,
+      tripName: '',
+      userName: 'Jun'
     };
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
     this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
@@ -35,6 +37,8 @@ export class Results extends Component {
     this.handleHomeChange = this.handleHomeChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
     this.handleGasChange = this.handleGasChange.bind(this);
+    this.handleTripChange = this.handleTripChange.bind(this);
+    this.handleTripSubmit = this.handleTripSubmit.bind(this);
   }
 
   onHomeMarkerClick(props, marker, event) {
@@ -86,12 +90,34 @@ export class Results extends Component {
     }
   }
 
+  handleTripChange(event) {
+    this.setState({
+      tripName: event.target.value
+    })
+  }
+
   handleGasChange(event) {
     let mpg = parseInt(event.target.value);
     this.setState({
       mpg: mpg
     });
   }
+
+  handleTripSubmit(event) {
+
+    const {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
+
+    axios
+      .post('/api/scenarios', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
+      .then(() => {
+        console.log('success posting data')
+      })
+      .catch(err => {
+        console.log('Error posting info')
+      });
+  }
+
+
 
 
 
@@ -130,15 +156,25 @@ export class Results extends Component {
   
 
   render() {
+    const carObj = {
+      dailyGasCost: this.state.dailyGasCost,
+      costPerGallon: this.state.costPerGallon
+    };
+
+
     const style = {
       width: '100%',
       height: '100%',
       position: 'absolute'
     };
 
+    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides} = this.state;
+
     const centerCoords = this.state.startCoords ? this.getMidpoint(this.state.startCoords, this.state.endCoords) : null;
 
+
     return (
+
     
       <div className={MapStyles.container}>
 
@@ -195,9 +231,14 @@ export class Results extends Component {
           <h1>Distance: 500 miles</h1>
         </div>
         
-        <Stats className={MapStyles.statsContainer} />
-
-
+        <Statistics 
+          className={MapStyles}
+          carPrice={carObj}
+          birdPrice={birdPrice}
+          lyftRides={lyftRides}
+          uberRides={uberRides}
+          change={this.handleTripChange}
+          submit={this.handleTripSubmit} />
       </div>
     )
   }
