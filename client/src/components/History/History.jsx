@@ -7,6 +7,7 @@ class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: '',
       data: []
     }
   }
@@ -17,6 +18,7 @@ class History extends Component {
       .get("/api/scenarios", {params: {username: user}})
       .then(({data}) => {
         this.setState({
+          username: user,
           data: [...data]
         });
       })
@@ -24,10 +26,11 @@ class History extends Component {
   }
 
   render() {
+    const { username } = this.state;
     return (
       <div className={styles.container}>
         <div>
-          <h2>Jun's Commute History</h2>
+          <h2>{username}'s Commute History</h2>
           {this.state.data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
         </div>
       </div>
