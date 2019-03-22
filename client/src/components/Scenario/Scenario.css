@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.flexTable {
+  flex: 1;
+  padding: 5px;
+}
+
+.category {
+  text-transform: uppercase;
+  font-weight: 700;
+}
