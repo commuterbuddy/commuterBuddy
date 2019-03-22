@@ -3,6 +3,7 @@ const dummyData = require('./dummyData.js')
 ;
 module.exports = {
   getPrices: (req, res) => {
+    console.log(req.body, req.query, req.params, req.data)
     const { startCity, endCity, mpg } = req.query;
     // const startCity = 'corona';
     // const endCity = 'anaheim';

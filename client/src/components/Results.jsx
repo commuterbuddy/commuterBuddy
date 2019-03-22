@@ -21,7 +21,7 @@ export class Results extends Component {
       startCity: '',
       endCity: '',
       mpg: 0,
-      distance: 0,
+      distance: undefined,
       lyftRides: [],
       uberRides: [],
       birdPrice: 0,
@@ -128,7 +128,7 @@ export class Results extends Component {
 
     console.log('THESE ARE THE PARAMS------------', startCity, endCity, mpg);
 
-    axios
+        axios
       .get('/api/prices', {params: {startCity, endCity, mpg}})
       .then(({data}) => {
         this.setState({
@@ -148,13 +148,14 @@ export class Results extends Component {
   }
 
   getMidpoint(start, end) {
-
     const lat = ((start.lat + end.lat) / 2);
     const lng = ((start.lng + end.lng) / 2);
-
     return {lat, lng};
   }
+
+
   
+
 
   render() {
     const carObj = {
@@ -165,18 +166,31 @@ export class Results extends Component {
 
     const style = {
       width: '75%',
-      height: '75%',
+      height: '77%',
       position: 'absolute'
     };
 
-    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides} = this.state;
+    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords} = this.state;
 
-    const centerCoords = this.state.startCoords ? this.getMidpoint(this.state.startCoords, this.state.endCoords) : null;
+    const centerCoords = startCoords ? this.getMidpoint(startCoords, endCoords) : null;
 
+    let points;
+
+    if (startCoords) {
+      points = [
+        startCoords, endCoords
+      ];
+    } else {
+      points = [{lat: 34.0522, lng: -118.2437}];
+    }
+    
+    let bounds = new this.props.google.maps.LatLngBounds();
+    for (var i = 0; i < points.length; i++) {
+      bounds.extend(points[i]);
+    }
 
     return (
 
-    
       <div className={MapStyles.container}>
 
         <UserForm 
@@ -195,8 +209,8 @@ export class Results extends Component {
             style={style}
             className={'map'}
             initialCenter={{lat: 34.0522, lng: -118.2437}}
-            center={centerCoords}
-            zoom={11}>
+            bounds={bounds}
+            >
 
             <Marker
               name={'Home'}
@@ -228,9 +242,12 @@ export class Results extends Component {
           </Map>
         </div>
 
-        <div className={MapStyles.distancePop}>
-          <h1>Distance: 500 miles</h1>
-        </div>
+        {distance ? 
+          <div className={MapStyles.distancePop}>
+            <h1>Distance: {distance} miles</h1>
+          </div>
+         : null}
+        
         
         <Statistics 
           className={MapStyles}
