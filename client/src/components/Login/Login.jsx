@@ -61,7 +61,6 @@ class Login extends Component {
             <Link to="/results" className={styles.button}>
               <button
                 type="submit"
-                onClick={this.handleSignup}
                 // disabled={!this.validateForm()}
                 className={styles.button}
               >
@@ -73,6 +72,7 @@ class Login extends Component {
                 type="submit"
                 // disabled={!this.validateForm()}
                 className={styles.button}
+                onClick={localStorage.setItem('user', username)}
               >
                 Log in
               </button>
