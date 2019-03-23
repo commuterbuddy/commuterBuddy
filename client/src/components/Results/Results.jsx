@@ -185,8 +185,6 @@ export class Results extends Component {
       points = [
         startCoords, endCoords
       ];
-    // } else {
-      // points = [{lat: 34.0522, lng: -118.2437}];
       bounds = new this.props.google.maps.LatLngBounds();
       for (var i = 0; i < points.length; i++) {
         bounds.extend(points[i]);

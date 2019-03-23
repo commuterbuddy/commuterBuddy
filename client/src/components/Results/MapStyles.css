@@ -22,6 +22,7 @@
 }
 
 .statsContainer {
+  margin-top: 10px;
   background-color: #FFF;
   z-index: 7;
   height: 20em;

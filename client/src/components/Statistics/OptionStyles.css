@@ -1,0 +1,27 @@
+.card {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 15%;
+  border-radius: 5px;
+}
+
+.img {
+  border-radius: 5px 5px 0 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.options {
+  list-style-type: none;
+}
