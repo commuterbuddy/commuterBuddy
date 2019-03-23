@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import RideShare from './RideShare.jsx';
+import { Link } from 'react-router-dom';
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -65,20 +65,37 @@ class Statistics extends Component {
               </div>          
             </div>
 
+            
+            {this.props.carPrice.costPerGallon ? 
+            <div className={styles.flexInput}>
 
-            {this.props.carPrice.costPerGallon ? <div className={styles.flexInput}>
-              
               <div className={styles.border}>
+            
                 <div>
                   <h2>Save this commute?</h2>
                 </div>  
               
                 <div className={styles.flexSubmit}>
                   <div><input type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
-                  <div><input type="submit" value="Save" onClick={this.props.submit} /></div>
+                   
+                  <Link to='/history' className={styles.button}>
+                    <button
+                      type="submit"
+                      // onClick={this.props.submit}
+                    >
+                Save
+              </button>
+            </Link>
+                
+
+
+                                  
                 </div>
+            
               </div>
-            </div> : null}
+            
+            </div> 
+             : null}
         
         </div>
   
