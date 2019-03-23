@@ -20,13 +20,13 @@ export class Results extends Component {
       workCounty: '',
       startCity: '',
       endCity: '',
-      mpg: 0,
+      mpg: undefined,
       distance: undefined,
       lyftRides: [],
       uberRides: [],
-      birdPrice: 0,
-      dailyGasCost: 0,
-      costPerGallon: 0,
+      birdPrice: undefined,
+      dailyGasCost: undefined,
+      costPerGallon: undefined,
       tripName: '',
       userName: 'Jun'
     };
@@ -258,6 +258,11 @@ export class Results extends Component {
           carPrice={carObj}
           birdPrice={birdPrice}
           lyftRides={lyftRides}
+          carImg="https://s3.us-east-2.amazonaws.com/carousel-fec/carImg2.png"
+          birdImg="https://s3.us-east-2.amazonaws.com/carousel-fec/birdLogo.jpg"
+          lyftImg="https://s3.us-east-2.amazonaws.com/carousel-fec/lyftLogo.jpg"
+          uberImg="https://s3.us-east-2.amazonaws.com/carousel-fec/uberImg.png"
+          saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
           change={this.handleTripChange}
           submit={this.handleTripSubmit} />

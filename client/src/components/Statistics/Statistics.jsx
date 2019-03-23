@@ -11,43 +11,77 @@ class Statistics extends Component {
 
   render() {
     return (
-      <div className={this.props.className.statsContainer}>
-      <div className={this.props.className.statsFlex}>
-          <div>Car: 
-            <div>Price Per Gallon: {this.props.carPrice.costPerGallon}</div>
-            <div>Daily Gas Cost: {this.props.carPrice.dailyGasCost}</div>
-          </div>
-
-          <div className={styles.card}>
-            <img className={styles.img} src="https://s3.us-east-2.amazonaws.com/carousel-fec/birdLogo.jpg" alt="BirdLogo" />
-            <div className={styles.container}>
-              <p>{this.props.birdPrice}</p>
-            </div>          
-          </div>
-
-          <div className={styles.card}>
-            <img className={styles.img} src="https://s3.us-east-2.amazonaws.com/carousel-fec/lyftLogo.jpg" alt="LyftLogo" />
-            <div className={styles.container}>
-              <ul className={styles.options}>
-                {this.props.lyftRides.map((option) => {
-                  return (
-                    <li>
-                      <b>{option.name}</b>{option.price}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>          
-          </div>  
-          
-
       
-      <div>Save this commute?</div><br />
-      <div>Name your trip:
-        <input type="text" name="tripName" onChange={this.props.change} />
-        <input type="submit" value="Save" onClick={this.props.submit} />
-      </div>
-      </div>
+      <div className={this.props.className.statsContainer}>
+        
+        <div className={this.props.className.statsFlex}>
+
+            <div className={styles.card}>
+              <img className={styles.carImg} src={this.props.carImg} alt="CarImg" />
+              <div className={styles.carContainer}>
+                <div className={styles.options}>
+                  {this.props.carPrice.costPerGallon ? <p className={styles.item}><b>Price per gallon</b>{this.props.carPrice.costPerGallon}</p> : null}
+                  {this.props.carPrice.dailyGasCost ? <p className={styles.item}><b>Price per day</b>{this.props.carPrice.dailyGasCost}</p> : null}
+                </div>
+              </div>          
+            </div>
+
+            <div className={styles.card}>
+              <img className={styles.img} src={this.props.birdImg} alt="BirdLogo" />
+              <div className={styles.container}>
+                <div className={styles.options}>
+                  {this.props.birdPrice ? <p className={styles.item}><b>Scooter</b>{this.props.birdPrice}</p> : null}
+                </div>
+              </div>          
+            </div>
+
+            <div className={styles.card}>
+              <img className={styles.img} src={this.props.lyftImg} alt="LyftLogo" />
+              <div className={styles.container}>
+                <ul className={styles.options}>
+                  {this.props.lyftRides.map((option) => {
+                    return (
+                      <li className={styles.item}>
+                        <b>{option.name}</b>{option.price}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>          
+            </div>
+
+            <div className={styles.card}>
+              <img className={styles.img} src={this.props.uberImg} alt="LyftLogo" />
+              <div className={styles.container}>
+                <ul className={styles.options}>
+                  {this.props.uberRides.map((option) => {
+                    return (
+                      <li className={styles.item}>
+                        <b>{option.name}</b>{option.price}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>          
+            </div>
+
+
+            {this.props.carPrice.costPerGallon ? <div className={styles.flexInput}>
+              
+              <div className={styles.border}>
+                <div>
+                  <h2>Save this commute?</h2>
+                </div>  
+              
+                <div className={styles.flexSubmit}>
+                  <div><input type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
+                  <div><input type="submit" value="Save" onClick={this.props.submit} /></div>
+                </div>
+              </div>
+            </div> : null}
+        
+        </div>
+  
       </div>
     )
   }

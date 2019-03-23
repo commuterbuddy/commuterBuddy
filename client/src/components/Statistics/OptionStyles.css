@@ -2,7 +2,15 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 15%;
+  border-radius: 20px;
+}
+
+.saveCard {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 15%;
   border-radius: 5px;
+  background-color: #1885FF;
 }
 
 .img {
@@ -13,15 +21,73 @@
   width: 70%;
 }
 
+.carImg {
+  padding-top: 50px;
+  border-radius: 20px 20px 0 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.saveCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 .container {
-  padding: 10px 20px;
+  padding: 10px 5px;
+  line-height: 1.6;
+}
+
+.carContainer {
+  padding: 47px 5px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.saveContainer {
+  padding: 10px 10px;
   text-align: center;
 }
 
 .options {
+  padding-inline-start: 10%;
+  margin-right: 10%;
   list-style-type: none;
 }
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexInput {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+}
+
+.flexSubmit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.border {
+  border: rgb(24, 133, 255);
+  padding: 10px 15px 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.border:hover {
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+
+
+
