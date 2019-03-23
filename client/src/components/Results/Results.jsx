@@ -265,7 +265,8 @@ export class Results extends Component {
           saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
           change={this.handleTripChange}
-          submit={this.handleTripSubmit} />
+          submit={this.handleTripSubmit}
+          path={this.props.path} />
       </div>
     )
   }

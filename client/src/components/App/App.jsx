@@ -28,7 +28,7 @@ class App extends Component {
         <Navigation authenticated={authenticated} />
         <Switch>
           <Route path="/" exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
-          <Route path='/results' component={Results} />
+          <Route path='/results' render={() => <Results path='/history'/>} />
           <Route path='/history' render={() => <History />} />
         </Switch>
       </BrowserRouter>

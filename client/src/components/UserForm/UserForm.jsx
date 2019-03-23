@@ -9,7 +9,7 @@ import SanDiego from './citySelectComponents/SanDiego.jsx';
 import SanFrancisco from './citySelectComponents/SanFrancisco.jsx';
 import SantaBarbara from './citySelectComponents/SantaBarbara.jsx';
 import SantaClara from './citySelectComponents/SantaClara.jsx';
-import axios from 'axios';
+import styles from './UserFormStyles.css';
 
 class UserForm extends Component {
   constructor(props) {
@@ -21,12 +21,12 @@ class UserForm extends Component {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <div className={`${this.props.className} ${styles.form}`}>
         <form>
           <label>
-            Home:
+            Home
             <select id="homeCounty" onChange={this.props.handleHomeCountyChange}>
-              <option value="Start">Choose your county</option>
+              <option value="Start">Select County</option>
               <option value="alameda" >Alameda</option>
               <option value="los angeles" >Los Angeles</option>
               <option value="orange" >Orange</option>
@@ -41,7 +41,7 @@ class UserForm extends Component {
           </label>
           
           <label>
-            City:
+            {this.props.workCounty ? <option value="Start">Select City</option> : null}
             {this.props.homeCounty === 'alameda' ? <Alameda change={this.props.handleHomeCityChange} /> :
             this.props.homeCounty === 'los angeles' ? <LosAngeles change={this.props.handleHomeCityChange} /> :
             this.props.homeCounty === 'orange' ? <Orange change={this.props.handleHomeCityChange} /> :
@@ -56,9 +56,9 @@ class UserForm extends Component {
 
           <br /><br />
           <label>
-            Work:
+            Work
               <select id="workCounty" onChange={this.props.handleWorkCountyChange}>
-                <option value="Start">Choose your county</option>
+                <option value="Start">Select County</option>
                 <option value="alameda">Alameda</option>
                 <option value="los angeles">Los Angeles</option>
                 <option value="orange">Orange</option>
@@ -73,7 +73,7 @@ class UserForm extends Component {
           </label>
 
           <label>
-            City:
+            {this.props.workCounty ? <option value="Start">Select City</option> : null}
             {this.props.workCounty === 'alameda' ? <Alameda change={this.props.handleWorkCityChange} /> :
             this.props.workCounty === 'los angeles' ? <LosAngeles change={this.props.handleWorkCityChange} /> :
             this.props.workCounty === 'orange' ? <Orange change={this.props.handleWorkCityChange} /> :
