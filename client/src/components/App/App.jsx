@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation.jsx';
 import Login from '../Login/Login.jsx';
 import Results from '../Results/Results.jsx';
@@ -14,24 +14,28 @@ class App extends Component {
     this.handleAuthenticate = this.handleAuthenticate.bind(this);
   }
 
-  handleAuthenticate() {
+  handleAuthenticate(auth) {
     const { authenticated } = this.state;
     this.setState({
-      authenticated: !authenticated
+      authenticated: auth
     });
   }
 
   render() {
     const { authenticated } = this.state;
+    const childProps = {
+      authenticated,
+      handleAuthenticate: this.handleAuthenticate
+    };
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Navigation authenticated={authenticated} />
         <Switch>
-          <Route path="/" exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
+          <Route path="/" exact render={() => <Login childProps={childProps}/>}  />
           <Route path='/results' component={Results} />
           <Route path='/history' render={() => <History />} />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

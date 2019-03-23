@@ -1,5 +1,8 @@
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const controllers = require('./controllers.js');
+const pool = require('../database');
+const saltRounds = 10;
 
 /*
   Apis to keep in mind
@@ -38,4 +41,39 @@ router
   .route('/scenarios')
   .get(controllers.getScenarios);
 
+router
+  .post('/signup', (req, res) => {
+    const { username, password } = req.body;
+    console.log(req.body);
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+      pool.query(`INSERT INTO users (username, password) VALUES ('${username}', '${hash}')`)
+        .then((data) => {
+          if (data) {
+            res.status(201).send('ok');
+          }
+        })
+        .catch(err => {
+          res.send('Name not available');
+        })
+    });
+  });
+
+router
+  .post('/login', (req, res) => {
+    const { username, password } = req.body;
+    pool.query(`SELECT * FROM users WHERE username='${username}'`)
+      .then((user) => {
+        if (!user) {
+          res.redirect('/');
+        } else {
+          bcrypt.compare(password, user.rows[0].password, (err, result) => {
+            if (result === true) {
+              res.send('ok');
+            } else {
+              res.send('Incorrect password');
+            }
+          });
+          }
+      });
+  })
 module.exports = router;

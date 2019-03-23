@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Login.css';
 
@@ -11,7 +11,7 @@ class Login extends Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   handleChange(e) {
@@ -20,11 +20,19 @@ class Login extends Component {
     });
   }
 
-  handleSubmit() {
-    const { username } = this.state;
-    localStorage.setItem('user', username);
-    this.props.authenticate();
-  }
+  handleSignup(e) {
+    e.preventDefault();
+    const { username, password } = this.state;
+    axios
+      .post('/api/signup', { username, password })
+      .then(res => {
+        if (res.data === 'ok') {
+          // window.location.href="/#/results";
+          console.log(this.props.history);
+        }
+      })
+      .catch(err => console.log(err))
+    }
 
   validateForm() {
     const { username, password } = this.state;
@@ -65,26 +73,22 @@ class Login extends Component {
               {this.props.authenticated === 'failed' ? 'Please enter the correct email/password combination' : ''}
             </div>
             <br />
-            <Link to="/results" className={styles.button}>
-              <button
-                type="submit"
-                // disabled={!this.validateForm()}
-                className={styles.button}
-                onClick={this.handleSubmit}
-              >
-                Sign up
-              </button>
-            </Link>
-            <Link to="/results" className={styles.button}>
-              <button
-                type="submit"
-                // disabled={!this.validateForm()}
-                className={styles.button}
-                onClick={this.handleSubmit}
-              >
-                Log in
-              </button>
-            </Link>
+            <button
+              type="submit"
+              // disabled={!this.validateForm()}
+              className={styles.button}
+              onClick={this.handleSignup}
+            >
+              Sign up
+            </button>
+            <button
+              type="submit"
+              // disabled={!this.validateForm()}
+              className={styles.button}
+              onClick={this.handleSignup}
+            >
+              Log in
+            </button>
           </form>
         </div>
       </div>
