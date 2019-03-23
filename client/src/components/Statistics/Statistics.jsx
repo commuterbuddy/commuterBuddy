@@ -17,17 +17,21 @@ class Statistics extends Component {
         <div className={this.props.className.statsFlex}>
 
             <div className={styles.card}>
-              <img className={styles.img} src={this.props.carImg} alt="CarImg" />
-              <div className={styles.container}>
-                {this.props.carPrice.costPerGallon ? <p>{this.props.carPrice.costPerGallon} per gallon</p> : null}
-                {this.props.carPrice.dailyGasCost ? <p>{this.props.carPrice.dailyGasCost} per day</p> : null}
+              <img className={styles.carImg} src={this.props.carImg} alt="CarImg" />
+              <div className={styles.carContainer}>
+                <div className={styles.options}>
+                  {this.props.carPrice.costPerGallon ? <p className={styles.item}><b>Price per gallon</b>{this.props.carPrice.costPerGallon}</p> : null}
+                  {this.props.carPrice.dailyGasCost ? <p className={styles.item}><b>Price per day</b>{this.props.carPrice.dailyGasCost}</p> : null}
+                </div>
               </div>          
             </div>
 
             <div className={styles.card}>
               <img className={styles.img} src={this.props.birdImg} alt="BirdLogo" />
               <div className={styles.container}>
-                <p>{this.props.birdPrice}</p>
+                <div className={styles.options}>
+                  {this.props.birdPrice ? <p className={styles.item}><b>Scooter</b>{this.props.birdPrice}</p> : null}
+                </div>
               </div>          
             </div>
 
@@ -37,7 +41,7 @@ class Statistics extends Component {
                 <ul className={styles.options}>
                   {this.props.lyftRides.map((option) => {
                     return (
-                      <li>
+                      <li className={styles.item}>
                         <b>{option.name}</b>{option.price}
                       </li>
                     )
@@ -52,7 +56,7 @@ class Statistics extends Component {
                 <ul className={styles.options}>
                   {this.props.uberRides.map((option) => {
                     return (
-                      <li>
+                      <li className={styles.item}>
                         <b>{option.name}</b>{option.price}
                       </li>
                     )
@@ -61,24 +65,23 @@ class Statistics extends Component {
               </div>          
             </div>
 
-            <div className={styles.saveCard}>
-              <img className={styles.saveImg} src={this.props.saveImg} alt="SaveLogo" />                         
-              <div className={styles.saveContainer}>
-                <div className={styles.saveEntry}>
 
-                  <div className={styles.saveQuestion}><h2>Save this commute?</h2></div>
-          
-                  <div className={styles.flexInput}>
-                    <input type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} />
-                    <input className={styles.button} type="submit" value="Save" onClick={this.props.submit} />
-                  </div>
-        
+            {this.props.carPrice.costPerGallon ? <div className={styles.flexInput}>
+              
+              <div className={styles.border}>
+                <div>
+                  <h2>Save this commute?</h2>
+                </div>  
+              
+                <div className={styles.flexSubmit}>
+                  <div><input type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
+                  <div><input type="submit" value="Save" onClick={this.props.submit} /></div>
                 </div>
-              </div>          
-            </div>  
-  
+              </div>
+            </div> : null}
+        
         </div>
-      
+  
       </div>
     )
   }

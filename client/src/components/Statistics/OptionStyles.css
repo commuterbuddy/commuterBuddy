@@ -2,7 +2,7 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 15%;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .saveCard {
@@ -21,8 +21,9 @@
   width: 70%;
 }
 
-.saveImg {
-  border-radius: 5px 5px 0 0;
+.carImg {
+  padding-top: 50px;
+  border-radius: 20px 20px 0 0;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -38,8 +39,14 @@
 }
 
 .container {
-  padding: 10px 20px;
+  padding: 10px 5px;
+  line-height: 1.6;
+}
+
+.carContainer {
+  padding: 47px 5px;
   text-align: center;
+  line-height: 1.6;
 }
 
 .saveContainer {
@@ -48,26 +55,39 @@
 }
 
 .options {
+  padding-inline-start: 10%;
+  margin-right: 10%;
   list-style-type: none;
 }
 
-.saveEntry {
-  display: block;
-  margin: 0 auto;
-  margin-left: 20%;
-  width: 20%;
-  margin-top: 5%;
-  align-content: center;
-}
-
-.saveQuestion {
+.item {
   display: flex;
-  margin-left: 5px;
+  justify-content: space-between;
 }
 
-.button {
-  margin-top: 20px;
-  margin-left: 45px;
+.flexInput {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
 }
+
+.flexSubmit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.border {
+  border: rgb(24, 133, 255);
+  padding: 10px 15px 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.border:hover {
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+
 
 

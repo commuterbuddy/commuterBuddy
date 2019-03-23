@@ -20,7 +20,7 @@ export class Results extends Component {
       workCounty: '',
       startCity: '',
       endCity: '',
-      mpg: 0,
+      mpg: undefined,
       distance: undefined,
       lyftRides: [],
       uberRides: [],
@@ -258,7 +258,7 @@ export class Results extends Component {
           carPrice={carObj}
           birdPrice={birdPrice}
           lyftRides={lyftRides}
-          carImg="https://s3.us-east-2.amazonaws.com/carousel-fec/carImg1.jpg"
+          carImg="https://s3.us-east-2.amazonaws.com/carousel-fec/carImg2.png"
           birdImg="https://s3.us-east-2.amazonaws.com/carousel-fec/birdLogo.jpg"
           lyftImg="https://s3.us-east-2.amazonaws.com/carousel-fec/lyftLogo.jpg"
           uberImg="https://s3.us-east-2.amazonaws.com/carousel-fec/uberImg.png"
