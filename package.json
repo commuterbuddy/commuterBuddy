@@ -45,8 +45,11 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "graphql": "^14.1.1",
     "node-lyft": "^1.0.3",
     "node-uber": "^2.0.0",
-    "react-router-dom": "^5.0.0"
+    "pg": "^7.9.0",
+    "react-router-dom": "^5.0.0",
+    "sequelize": "^5.1.0"
   }
 }
