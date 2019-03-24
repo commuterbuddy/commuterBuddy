@@ -1,5 +1,6 @@
 const getPrice = require('./apis/price');
 const dummyData = require('./dummyData.js');
+const { User, Scenario } = require('../database/models');
 
 module.exports = {
   getPrices: (req, res) => {
@@ -20,10 +21,28 @@ module.exports = {
   postScenarios: (req, res) => {
     const scenarioObject = req.body;
     console.log('scen obj', scenarioObject);
-    res.status(201).send('good post');
+    const newScen = new Scenario(scenarioObject);
+    newScen.save()
+      .then((data) => {
+        console.log(data);
+        res.status(201).send('good post');
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(403).send(err);
+      });
   },
 
   getAllScenarios: (req, res) => {
-    res.status(200).send('good get');
+    const { username: userName } = req.query;
+    Scenario.find({ userName })
+      .then((data) => {
+        console.log(data);
+        res.status(200).send(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(403).send(err);
+      });
   },
 };

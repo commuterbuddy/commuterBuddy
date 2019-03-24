@@ -112,7 +112,7 @@ export class Results extends Component {
     const {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
-      .post('/api/scenarios', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
+      .post('/api/scenariosDev', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
       .then(() => {
         console.log('success posting data')
       })
