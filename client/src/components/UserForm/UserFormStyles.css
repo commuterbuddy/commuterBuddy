@@ -8,13 +8,15 @@
   margin-top: 2%;
   background: #1885FF;
   width: 200px;
+  border-radius: 5px;
 }
 
 .cityDropdown {
   position: relative;
-  margin-top: 10%;
+  margin: 10% 0%;
   background: #1885FF;
   width: 200px;
+  border-radius: 5px;
 }
 
 .list {
@@ -49,6 +51,8 @@
 
 .button {
   padding: 10px;
+  text-transform: capitalize;
+  color: white;
 }
 
 .button:before {
@@ -60,5 +64,29 @@
   border-color: white transparent transparent transparent;
   right: 6px;
   top: 18px;
+}
+
+.textInput {
+  margin-top: 5%;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.submit {
+  border-radius: 5px;
+  background-color: #FF8C00;
+  color: white;
+  padding: 10px 30px;
+  font-size: 20px; 
+  margin-left: 50%;
+}
+
+.submit:hover {
+  background-color: #FFA500;
+}
+
+.input {
+  display: flex;
+  margin-top: 8%;
 }
 

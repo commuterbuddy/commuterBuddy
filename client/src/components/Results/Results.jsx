@@ -33,6 +33,10 @@ export class Results extends Component {
       hCiMenu: false,
       wCoMenu: false,
       wCiMenu: false,
+      selectHomeCounty: undefined,
+      selectHomeCity: undefined,
+      selectWorkCounty: undefined,
+      selectWorkCity: undefined
     };
 
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
@@ -191,7 +195,7 @@ export class Results extends Component {
 
     const style = {
       width: '75%',
-      height: '77%',
+      height: '720px',
       position: 'absolute'
     };
 
@@ -226,6 +230,8 @@ export class Results extends Component {
           handleGasChange={this.handleGasChange}
           homeCounty={this.state.homeCounty}
           workCounty={this.state.workCounty}
+          startCity={this.state.startCity}
+          endCity={this.state.endCity}
           toggleDropdownMenu={this.toggleDropdownMenu}
           hCoMenu={this.state.hCoMenu}
           hCiMenu={this.state.hCiMenu} 

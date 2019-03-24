@@ -26,7 +26,7 @@ class UserForm extends Component {
           <b>Home</b>
 
           <div className={styles.dropdown}>            
-            <div id="hCoMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}><b> Select County </b></div>
+            <div id="hCoMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}>{this.props.homeCounty ? this.props.homeCounty : 'Select County'}</div>
               { this.props.hCoMenu ? 
                 (
                 <ul className={styles.list}>
@@ -46,7 +46,7 @@ class UserForm extends Component {
           </div>
           
           <div className={styles.cityDropdown}>
-            <div id="hCiMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}><b> Select City </b></div>
+            <div id="hCiMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}>{this.props.startCity ? this.props.startCity : 'Select City'}</div>
               {this.props.hCiMenu && this.props.homeCounty === 'alameda' ? <Alameda change={this.props.handleHomeCityChange} hCiMenu={this.props.hCiMenu} /> :
               this.props.hCiMenu && this.props.homeCounty === 'los angeles' ? <LosAngeles change={this.props.handleHomeCityChange} hCiMenu={this.props.hCiMenu} /> :
               this.props.hCiMenu && this.props.homeCounty === 'orange' ? <Orange change={this.props.handleHomeCityChange} hCiMenu={this.props.hCiMenu} /> :
@@ -62,7 +62,7 @@ class UserForm extends Component {
           <b>Work</b>
 
           <div className={styles.dropdown}>
-            <div id="wCoMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}><b> Select County </b></div>
+            <div id="wCoMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}>{this.props.workCounty ? this.props.workCounty : 'Select County'}</div>
               { this.props.wCoMenu ? 
                 (
                 <ul className={styles.list}>
@@ -82,7 +82,7 @@ class UserForm extends Component {
           </div>
 
           <div className={styles.cityDropdown}>
-            <div id="wCiMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}><b> Select City </b></div>
+            <div id="wCiMenu" className={styles.button} onClick={this.props.toggleDropdownMenu}>{this.props.endCity ? this.props.endCity : 'Select City'}</div>
               {this.props.wCiMenu && this.props.workCounty === 'alameda' ? <Alameda change={this.props.handleWorkCityChange} wCiMenu={this.props.wCiMenu} /> :
               this.props.wCiMenu && this.props.workCounty === 'los angeles' ? <LosAngeles change={this.props.handleWorkCityChange} wCiMenu={this.props.wCiMenu} /> :
               this.props.wCiMenu && this.props.workCounty === 'orange' ? <Orange change={this.props.handleWorkCityChange} wCiMenu={this.props.wCiMenu} /> :
@@ -95,12 +95,18 @@ class UserForm extends Component {
               this.props.wCiMenu && this.props.workCounty === 'santa clara' ? <SantaClara change={this.props.handleWorkCityChange} wCiMenu={this.props.wCiMenu} /> : null}
           </div>
         
-          <label>
-            Average Miles Per Gallon (MPG):
-            <input type="text" name="mpg" onChange={this.props.handleGasChange} /><br />
-          </label><br />
-          <input type="submit" value="Find my commute!" onClick={(e) => this.props.submit(e)} />
-      </div>
+          <b>Average Miles Per Gallon (MPG)</b>   
+
+          <div className={styles.input}>           
+            <div>  
+              <input className={styles.textInput} type="text" name="mpg" onChange={this.props.handleGasChange} />
+            </div>
+            <div>
+              <input className={styles.submit} type="submit" value="Go" onClick={(e) => this.props.submit(e)} />
+            </div>
+          </div>
+
+        </div>
 
     )
   }
