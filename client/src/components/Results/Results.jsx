@@ -29,7 +29,10 @@ export class Results extends Component {
       costPerGallon: undefined,
       tripName: '',
       userName: 'Jun',
-      displayMenu: false,
+      hCoMenu: false,
+      hCiMenu: false,
+      wCoMenu: false,
+      wCiMenu: false,
     };
 
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
@@ -50,7 +53,7 @@ export class Results extends Component {
     console.log('CLICKED!!!!!!!!!! TOGGLE DROPDOWN MENU');
     // alert('yoooooooo')
     this.setState({
-      displayMenu: !this.state.displayMenu
+      [event.target.id]: !this.state[event.target.id]
     })
   }
 
@@ -81,30 +84,33 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
-    console.log('CLICKED!!!!!!!!!!!');
-    console.log('this is the event.target.value', event.target.value);
     console.log('this is the event.target.id', event.target.id);
     this.setState({
       homeCounty: event.target.id,
-      displayMenu: !this.state.displayMenu
+      hCoMenu: !this.state.hCoMenu
     })
   }
 
   handleHomeCityChange(event) {
+    console.log('this is the event.target.id', event.target.id);
     this.setState({
-      startCity: event.target.id
+      startCity: event.target.id,
+      hCiMenu: !this.state.hCiMenu
     })
+
   }
 
   handleWorkCountyChange(event) {
     this.setState({
-      workCounty: event.target.id
+      workCounty: event.target.id,
+      wCoMenu: !this.state.wCoMenu
     })
   }
 
   handleWorkCityChange(event) {
     this.setState({
-      endCity: event.target.id
+      endCity: event.target.id,
+      wCiMenu: !this.state.wCiMenu 
     })
   }
 
@@ -221,7 +227,10 @@ export class Results extends Component {
           homeCounty={this.state.homeCounty}
           workCounty={this.state.workCounty}
           toggleDropdownMenu={this.toggleDropdownMenu}
-          displayMenu={this.state.displayMenu} />
+          hCoMenu={this.state.hCoMenu}
+          hCiMenu={this.state.hCiMenu} 
+          wCoMenu={this.state.wCoMenu} 
+          wCiMenu={this.state.wCiMenu}  />
         
         <div className={MapStyles.mapContainer} >          
           <Map 

@@ -25,7 +25,7 @@
   margin-top: 10px;
   margin-bottom: 5%;
   background-color: #FFF;
-  z-index: 7;
+  z-index: 1;
   height: 20em;
   grid-column-start: 1;
   grid-column-end: 5;

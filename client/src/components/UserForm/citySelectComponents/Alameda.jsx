@@ -2,13 +2,14 @@ import React from 'react';
 import styles from '../UserFormStyles.css';
 
 const Alameda = (props) => {
-  return (
-    <ul className={styles.list} id="city" onClick={(event) => props.change(event)}>
-      <li className={styles.items} value="Start">Choose your city</li>
-      <li className={styles.items} id="oakland" >Oakland</li>
-    </ul>
-
-  );
+  if (props.hCiMenu || props.wCiMenu) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="oakland">Oakland</li>
+      </ul>
+    )
+  }
+  return null;  
 };
 
 export default Alameda;
