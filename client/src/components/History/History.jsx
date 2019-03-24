@@ -7,7 +7,7 @@ class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: 'Jun',
       data: []
     }
   }
@@ -15,7 +15,7 @@ class History extends Component {
   componentDidMount() {
     let user = localStorage.getItem('user');
     axios
-      .get("/api/scenarios", {params: {username: user}})
+      .get("/api/scenariosDev", {params: {username: this.state.username}})
       .then(({data}) => {
         this.setState({
           username: user,
