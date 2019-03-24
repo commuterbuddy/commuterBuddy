@@ -28,7 +28,8 @@ export class Results extends Component {
       dailyGasCost: undefined,
       costPerGallon: undefined,
       tripName: '',
-      userName: 'Jun'
+      userName: 'Jun',
+      displayMenu: false,
     };
 
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
@@ -42,7 +43,17 @@ export class Results extends Component {
     this.handleGasChange = this.handleGasChange.bind(this);
     this.handleTripChange = this.handleTripChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
+    this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
   }
+
+  toggleDropdownMenu(event) {
+    console.log('CLICKED!!!!!!!!!! TOGGLE DROPDOWN MENU');
+    // alert('yoooooooo')
+    this.setState({
+      displayMenu: !this.state.displayMenu
+    })
+  }
+
 
   onHomeMarkerClick(props, marker, event) {
     this.setState({
@@ -70,26 +81,30 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
+    console.log('CLICKED!!!!!!!!!!!');
+    console.log('this is the event.target.value', event.target.value);
+    console.log('this is the event.target.id', event.target.id);
     this.setState({
-      homeCounty: event.target.value
+      homeCounty: event.target.id,
+      displayMenu: !this.state.displayMenu
     })
   }
 
   handleHomeCityChange(event) {
     this.setState({
-      startCity: event.target.value
+      startCity: event.target.id
     })
   }
 
   handleWorkCountyChange(event) {
     this.setState({
-      workCounty: event.target.value
+      workCounty: event.target.id
     })
   }
 
   handleWorkCityChange(event) {
     this.setState({
-      endCity: event.target.value
+      endCity: event.target.id
     })
   }
 
@@ -204,7 +219,9 @@ export class Results extends Component {
           handleWorkCityChange={this.handleWorkCityChange}
           handleGasChange={this.handleGasChange}
           homeCounty={this.state.homeCounty}
-          workCounty={this.state.workCounty} />
+          workCounty={this.state.workCounty}
+          toggleDropdownMenu={this.toggleDropdownMenu}
+          displayMenu={this.state.displayMenu} />
         
         <div className={MapStyles.mapContainer} >          
           <Map 

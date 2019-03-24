@@ -1,3 +1,64 @@
 .form {
   background-color: rgba(211, 211, 211, 0.3);
+  font-family: Helvetica, Arial, sans-serif;
 }
+
+.dropdown {
+  position: relative;
+  margin-top: 2%;
+  background: #1885FF;
+  width: 200px;
+}
+
+.cityDropdown {
+  position: relative;
+  margin-top: 10%;
+  background: #1885FF;
+  width: 200px;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 100%;
+  right: 0px;
+  width: 200px;
+  background-color: white;
+  font-weight: bold;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;  
+}
+
+.items {
+  color: #000;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.items:last-child {
+  border-bottom: none;
+}
+
+.items:hover {
+  background-color: #e5e5e5;
+  color: white;
+}
+
+.button {
+  padding: 10px;
+}
+
+.button:before {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: 10px solid;
+  border-color: white transparent transparent transparent;
+  right: 6px;
+  top: 18px;
+}
+

@@ -3,3 +3,4 @@ config.js
 .vscode
 bundle.js
 package-lock.json
+package.json

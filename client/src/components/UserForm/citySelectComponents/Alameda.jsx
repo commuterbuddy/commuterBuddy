@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from '../UserFormStyles.css';
 
 const Alameda = (props) => {
   return (
-    <select id="city" onChange={(event) => props.change(event)}>
-      <option value="Start">Choose your city</option>
-      <option value="oakland">Oakland</option>
-    </select>
+    <ul className={styles.list} id="city" onClick={(event) => props.change(event)}>
+      <li className={styles.items} value="Start">Choose your city</li>
+      <li className={styles.items} id="oakland" >Oakland</li>
+    </ul>
 
   );
 };
