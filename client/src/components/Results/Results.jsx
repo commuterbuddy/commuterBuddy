@@ -28,7 +28,15 @@ export class Results extends Component {
       dailyGasCost: undefined,
       costPerGallon: undefined,
       tripName: '',
-      userName: 'Jun'
+      userName: 'Jun',
+      hCoMenu: false,
+      hCiMenu: false,
+      wCoMenu: false,
+      wCiMenu: false,
+      selectHomeCounty: undefined,
+      selectHomeCity: undefined,
+      selectWorkCounty: undefined,
+      selectWorkCity: undefined
     };
 
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
@@ -42,7 +50,17 @@ export class Results extends Component {
     this.handleGasChange = this.handleGasChange.bind(this);
     this.handleTripChange = this.handleTripChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
+    this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
   }
+
+  toggleDropdownMenu(event) {
+    console.log('CLICKED!!!!!!!!!! TOGGLE DROPDOWN MENU');
+    // alert('yoooooooo')
+    this.setState({
+      [event.target.id]: !this.state[event.target.id]
+    })
+  }
+
 
   onHomeMarkerClick(props, marker, event) {
     this.setState({
@@ -70,26 +88,33 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
+    console.log('this is the event.target.id', event.target.id);
     this.setState({
-      homeCounty: event.target.value
+      homeCounty: event.target.id,
+      hCoMenu: !this.state.hCoMenu
     })
   }
 
   handleHomeCityChange(event) {
+    console.log('this is the event.target.id', event.target.id);
     this.setState({
-      startCity: event.target.value
+      startCity: event.target.id,
+      hCiMenu: !this.state.hCiMenu
     })
+
   }
 
   handleWorkCountyChange(event) {
     this.setState({
-      workCounty: event.target.value
+      workCounty: event.target.id,
+      wCoMenu: !this.state.wCoMenu
     })
   }
 
   handleWorkCityChange(event) {
     this.setState({
-      endCity: event.target.value
+      endCity: event.target.id,
+      wCiMenu: !this.state.wCiMenu 
     })
   }
 
@@ -170,7 +195,7 @@ export class Results extends Component {
 
     const style = {
       width: '75%',
-      height: '77%',
+      height: '720px',
       position: 'absolute'
     };
 
@@ -204,7 +229,14 @@ export class Results extends Component {
           handleWorkCityChange={this.handleWorkCityChange}
           handleGasChange={this.handleGasChange}
           homeCounty={this.state.homeCounty}
-          workCounty={this.state.workCounty} />
+          workCounty={this.state.workCounty}
+          startCity={this.state.startCity}
+          endCity={this.state.endCity}
+          toggleDropdownMenu={this.toggleDropdownMenu}
+          hCoMenu={this.state.hCoMenu}
+          hCiMenu={this.state.hCiMenu} 
+          wCoMenu={this.state.wCoMenu} 
+          wCiMenu={this.state.wCiMenu}  />
         
         <div className={MapStyles.mapContainer} >          
           <Map 
@@ -265,7 +297,8 @@ export class Results extends Component {
           saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
           change={this.handleTripChange}
-          submit={this.handleTripSubmit} />
+          submit={this.handleTripSubmit}
+          path={this.props.path} />
       </div>
     )
   }

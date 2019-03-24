@@ -3,6 +3,7 @@
   padding-top: 37px;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 70% 30%;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -14,18 +15,18 @@
 }
 
 .formContainer {
+  padding-left: 5%;
   grid-column-start: 1;
   grid-column-end: 2; 
   z-index: 6;
-  background-color:  #ADD8E6;
-  height: 35em;
+  height: 45em;
 }
 
 .statsContainer {
   margin-top: 10px;
   margin-bottom: 5%;
   background-color: #FFF;
-  z-index: 7;
+  z-index: 1;
   height: 20em;
   grid-column-start: 1;
   grid-column-end: 5;
