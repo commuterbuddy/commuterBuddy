@@ -7,15 +7,14 @@ class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Jun',
       data: []
     }
   }
 
   componentDidMount() {
-    let user = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
     axios
-      .get("/api/scenariosDev", {params: {username: this.state.username}})
+      .get("/api/scenariosDev", {params: {username: user}})
       .then(({data}) => {
         this.setState({
           username: user,
@@ -26,15 +25,19 @@ class History extends Component {
   }
 
   render() {
-    const { username } = this.state;
-    return (
-      <div className={styles.container}>
-        <div>
-          <h2>{username}'s Commute History</h2>
-          {this.state.data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
+    const user = localStorage.getItem('user');
+    if (user) {
+      return (
+        <div className={styles.container}>
+          <div>
+            <h2>{user}'s Commute History</h2>
+            {this.state.data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 

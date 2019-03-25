@@ -28,7 +28,7 @@ export class Results extends Component {
       dailyGasCost: undefined,
       costPerGallon: undefined,
       tripName: '',
-      userName: 'Jun',
+      userName: '',
       hCoMenu: false,
       hCiMenu: false,
       wCoMenu: false,
@@ -131,10 +131,11 @@ export class Results extends Component {
     });
   }
 
-  handleTripSubmit(event) {
-    event.preventDefault();
+  handleTripSubmit(e) {
+    e.preventDefault();
 
-    const {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
+    const userName = localStorage.getItem('user');
+    const {tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
       .post('/api/scenariosDev', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})

@@ -43,4 +43,12 @@ router
   .post(controllers.postScenarios)
   .get(controllers.getAllScenarios);
 
+router
+  .route('/signup')
+  .post(controllers.postSignup);
+
+router
+  .route('/login')
+  .post(controllers.postLogin)
+
 module.exports = router;

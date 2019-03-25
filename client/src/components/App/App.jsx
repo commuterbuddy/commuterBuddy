@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation.jsx';
 import Login from '../Login/Login.jsx';
 import Results from '../Results/Results.jsx';
@@ -16,6 +16,9 @@ class App extends Component {
 
   handleAuthenticate() {
     const { authenticated } = this.state;
+    if (authenticated) {
+      localStorage.removeItem('user');
+    }
     this.setState({
       authenticated: !authenticated
     });
@@ -23,15 +26,16 @@ class App extends Component {
 
   render() {
     const { authenticated } = this.state;
+
     return (
-      <BrowserRouter>
-        <Navigation authenticated={authenticated} />
+      <HashRouter>
+        <Navigation authenticate={this.handleAuthenticate} authenticated={authenticated} />
         <Switch>
           <Route path="/" exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
-          <Route path='/results' render={() => <Results path='/history'/>} />
+          <Route path='/results' component={Results} />
           <Route path='/history' render={() => <History />} />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

@@ -1,4 +1,3 @@
-
 .container1 {
   font-family: Helvetica, Arial, sans-serif;
   background-image: url("https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2016/06/17/103724919-GettyImages-458124028.jpg?v=1466190931");
@@ -68,8 +67,10 @@
 }
 
 .auth {
+  height: 16px;
   font-size: 12px;
   color: red;
+  margin-bottom: 6px;
 }
 
 ::placeholder {

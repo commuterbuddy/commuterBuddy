@@ -81,7 +81,7 @@ class Statistics extends Component {
                   <Link to='/history' className={styles.button}>
                     <button
                       type="submit"
-                      // onClick={this.props.submit}
+                      onClick={(e) => this.props.submit(e)}
                     >
                 Save
               </button>
