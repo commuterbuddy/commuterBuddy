@@ -1,17 +1,19 @@
 import React from 'react';
+import styles from '../UserFormStyles.css';
 
 const Riverside = (props) => {
-  return (
-    <select id="city" onChange={(event) => props.change(event)}>
-      <option value="Start">Choose your city</option>
-      <option value="corona">Corona</option>
-      <option value="moreno valley">Moreno Valley</option>
-      <option value="murrieta">Murrieta</option>
-      <option value="riverside">Riverside</option>
-      <option value="temecula">Temecula</option>
-    </select>
-
-  );
+  if (props.hCiMenu || props.wCiMenu) {
+    return (
+    <ul className={styles.list}>
+      <li className={styles.items} onClick={(event) => props.change(event)} id="corona">Corona</li>
+      <li className={styles.items} onClick={(event) => props.change(event)} id="moreno valley">Moreno Valley</li>
+      <li className={styles.items} onClick={(event) => props.change(event)} id="murrieta">Murrieta</li>
+      <li className={styles.items} onClick={(event) => props.change(event)} id="riverside">Riverside</li>
+      <li className={styles.items} onClick={(event) => props.change(event)} id="temecula">Temecula</li>
+    </ul>
+    )
+  }
+  return null;
 };
 
 export default Riverside;

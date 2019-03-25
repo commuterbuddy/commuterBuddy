@@ -1,19 +1,21 @@
 import React from 'react';
+import styles from '../UserFormStyles.css';
 
 const SanDiego = (props) => {
-  return (
-    <select id="city" onChange={(event) => props.change(event)}>
-      <option value="Start">Choose your city</option>
-      <option value="escondido">Escondido</option>
-      <option value="el cajon">El Cajon</option>
-      <option value="carlsbad">Carlsbad</option>
-      <option value="chula vista">Chula Vista</option>
-      <option value="oceanside">Oceanside</option>
-      <option value="san diego">San Diego</option>
-      <option value="vista">Vista</option>
-    </select>
-
-  );
+  if (props.hCiMenu || props.wCiMenu) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="escondido">Escondido</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="el cajon">El Cajon</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="carlsbad">Carlsbad</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="chula vista">Chula Vista</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="oceanside">Oceanside</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="san diego">San Diego</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="vista">Vista</li>
+      </ul>
+    )
+  }
+  return null;
 };
 
 export default SanDiego;

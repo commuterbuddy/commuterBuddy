@@ -1,20 +1,22 @@
 import React from 'react';
+import styles from '../UserFormStyles.css';
 
 const SantaClara = (props) => {
-  return (
-    <select id="city" onChange={(event) => props.change(event)}>
-      <option value="Start">Choose your city</option>
-      <option value="cupertino">Cupertino</option>
-      <option value="milpitas">Milpitas</option>
-      <option value="mountain view">Mountain View</option>
-      <option value="palo alto">Palo Alto</option>
-      <option value="san jose">San Jose</option>
-      <option value="santa clara">Santa Clara</option>
-      <option value="stanford">Stanford</option>
-      <option value="sunnyvale">Sunnyvale</option>
-    </select>
-
-  );
+  if (props.hCiMenu || props.wCiMenu) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="cupertino">Cupertino</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="milpitas">Milpitas</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="mountain view">Mountain View</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="palo alto">Palo Alto</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="san jose">San Jose</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="santa clara">Santa Clara</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="stanford">Stanford</li>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="sunnyvale">Sunnyvale</li>
+      </ul>
+    )
+  }
+  return null;
 };
 
 export default SantaClara;

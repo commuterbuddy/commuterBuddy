@@ -1,13 +1,15 @@
 import React from 'react';
+import styles from '../UserFormStyles.css';
 
 const SantaBarbara = (props) => {
-  return (
-    <select id="city" onChange={(event) => props.change(event)}>
-      <option value="Start">Choose your city</option>
-      <option value="santa barbara">Santa Barbara</option>
-    </select>
-
-  );
+  if (props.hCiMenu || props.wCiMenu) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.items} onClick={(event) => props.change(event)} id="santa barbara">Santa Barbara</li>
+      </ul>
+    )
+  }
+  return null;
 };
 
 export default SantaBarbara;
