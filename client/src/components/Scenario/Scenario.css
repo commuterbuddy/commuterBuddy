@@ -6,27 +6,57 @@
 .flexContainer {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  background-color: rgba(211, 211, 211, 0.3)
 }
 
 .flexTable {
   box-sizing: border-box;
   flex-grow: 1;
-  padding: 0.8em 1.2em;
+  padding-bottom: 1.2em;
   list-style: none;
   overflow: hidden;
   border: solid 3px white;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 15%;
+  border-radius: 20px;
+  margin: 20px;
+  background-color: white;
+}
+
+.flexTable:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.carImg {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 20px 20px 0 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.img {
+  border-radius: 5px 5px 0 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .align {
-  display: inline-block;
-  text-align: left;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-.category {
-  text-transform: uppercase;
-  font-weight: 700;
+.innerFlex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
@@ -34,4 +64,6 @@
   padding: 15px;
   background: rgb(22, 176, 232);
   text-align: left;
+  text-transform: uppercase;
+  font-weight: 700;
 }

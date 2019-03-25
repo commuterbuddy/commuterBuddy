@@ -26,15 +26,22 @@ class History extends Component {
 
   render() {
     const user = localStorage.getItem('user');
+    const { data } = this.state;
     if (user) {
-      return (
-        <div className={styles.container}>
-          <div>
-            <h2>{user}'s Commute History</h2>
-            {this.state.data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
+      if (data) {
+        return (
+          <div className={styles.container}>
+            <div>
+              <h2>{user}'s Commute History</h2>
+              {data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
+            </div>
           </div>
+        );
+      } else {
+        <div>
+          <h2>You have no commute history saved.</h2>
         </div>
-      );
+      }
     } else {
       return null;
     }

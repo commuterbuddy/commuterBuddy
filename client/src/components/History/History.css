@@ -1,5 +1,7 @@
 .container {
+  font-family: Helvetica, Arial, sans-serif;
   position: absolute;
+  text-align: center;
   top: 39.5px;
   width: 100%;
 }
