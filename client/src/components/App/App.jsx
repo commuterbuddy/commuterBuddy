@@ -16,6 +16,9 @@ class App extends Component {
 
   handleAuthenticate() {
     const { authenticated } = this.state;
+    if (authenticated) {
+      localStorage.removeItem('user');
+    }
     this.setState({
       authenticated: !authenticated
     });

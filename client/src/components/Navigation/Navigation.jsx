@@ -4,12 +4,12 @@ import styles from './Navigation.css';
 
 const Nagivation = (props) => {
   return (
-    <div className={props.authenticated ? styles.navbar : styles.hide}>
+    <div className={styles.navbar}>
       <NavLink to="/results" className={styles.links}>Results</NavLink>
       <NavLink to="/history" className={styles.links}>History</NavLink>
       <NavLink
         to="/"
-        className={styles.links}
+        className={props.authenticated ? styles.links : styles.hide}
         style={{float: "right", marginRight: "40px"}}
         onClick={ () => props.authenticate() }
       >
