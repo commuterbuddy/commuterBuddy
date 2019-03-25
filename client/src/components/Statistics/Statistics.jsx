@@ -10,6 +10,7 @@ class Statistics extends Component {
   }
 
   render() {
+    
     return (
       
       <div className={this.props.className.statsContainer}>
@@ -20,7 +21,7 @@ class Statistics extends Component {
               <img className={styles.carImg} src={this.props.carImg} alt="CarImg" />
               <div className={styles.carContainer}>
                 <div className={styles.options}>
-                  {this.props.carPrice.costPerGallon ? <p className={styles.item}><b>Price per gallon</b>{this.props.carPrice.costPerGallon}</p> : null}
+                  {this.props.carPrice.costPerGallon ? <p className={styles.item}><b>Price per gallon</b>{`$${this.props.carPrice.costPerGallon.toFixed(2)}`}</p> : null}
                   {this.props.carPrice.dailyGasCost ? <p className={styles.item}><b>Price per day</b>{this.props.carPrice.dailyGasCost}</p> : null}
                 </div>
               </div>          
