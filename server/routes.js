@@ -49,10 +49,10 @@ router
       pool.query(`INSERT INTO users (username, password) VALUES ('${username}', '${hash}')`)
         .then((data) => {
           if (data) {
-            res.status(201).send('ok');
+            res.status(201).send(username);
           }
         })
-        .catch(err => {
+        .catch((err) => {
           res.send('Name not available');
         })
     });
@@ -61,19 +61,20 @@ router
 router
   .post('/login', (req, res) => {
     const { username, password } = req.body;
+    console.log(req.body);
     pool.query(`SELECT * FROM users WHERE username='${username}'`)
       .then((user) => {
-        if (!user) {
-          res.redirect('/');
+        if (!user.rows[0]) {
+          res.send('Username doesn\'t exist');
         } else {
           bcrypt.compare(password, user.rows[0].password, (err, result) => {
             if (result === true) {
-              res.send('ok');
+              res.send(username);
             } else {
               res.send('Incorrect password');
             }
           });
-          }
+        }
       });
   })
 module.exports = router;

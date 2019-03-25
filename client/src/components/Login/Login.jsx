@@ -8,10 +8,12 @@ class Login extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      authResponse: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChange(e) {
@@ -25,14 +27,47 @@ class Login extends Component {
     const { username, password } = this.state;
     axios
       .post('/api/signup', { username, password })
-      .then(res => {
-        if (res.data === 'ok') {
+      .then((res) => {
+        if (res.data === username) {
           // window.location.href="/#/results";
-          console.log(this.props.history);
+          localStorage.setItem('user', username);
+          // this.setState({
+          //   auth: true
+          // })
+          this.props.authenticate();
+        } else if (res.data === 'Name not available') {
+          this.setState({
+            authResponse: res.data
+          })
         }
       })
       .catch(err => console.log(err))
-    }
+  }
+
+  handleLogin(e) {
+    e.preventDefault();
+    const { username, password } = this.state;
+    axios
+      .post('/api/login', { username, password })
+      .then((res) => {
+        if (res.data === username) {
+          localStorage.setItem('user', username);
+          // this.setState({
+          //   auth: true
+          // })
+          this.props.authenticate();
+        } else if (res.data === 'Incorrect password') {
+          this.setState({
+            authResponse: res.data
+          })
+        } else if (res.data === 'Username doesn\'t exist') {
+          this.setState({
+            authResponse: res.data
+          })
+        }
+      })
+      .catch(err => console.log(err))
+  }
 
   validateForm() {
     const { username, password } = this.state;
@@ -43,7 +78,11 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, authResponse } = this.state;
+
+    if (this.props.authenticated === true) {
+      return <Redirect to='/results'/>
+    }
     return (
       <div className={styles.container1}>
         <div className={styles.container2}>
@@ -70,12 +109,13 @@ class Login extends Component {
               />
             </label>
             <div className={styles.auth}>
-              {this.props.authenticated === 'failed' ? 'Please enter the correct email/password combination' : ''}
+              {authResponse === 'Name not available' ? 'Name already taken' : ''}
+              {authResponse === 'Incorrect password' ? 'Incorrect password' : ''}
+              {authResponse === 'Username doesn\'t exist' ? 'Username doesn\'t exist' : ''}
             </div>
-            <br />
             <button
               type="submit"
-              // disabled={!this.validateForm()}
+              disabled={!this.validateForm()}
               className={styles.button}
               onClick={this.handleSignup}
             >
@@ -83,9 +123,9 @@ class Login extends Component {
             </button>
             <button
               type="submit"
-              // disabled={!this.validateForm()}
+              disabled={!this.validateForm()}
               className={styles.button}
-              onClick={this.handleSignup}
+              onClick={this.handleLogin}
             >
               Log in
             </button>

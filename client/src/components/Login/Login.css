@@ -68,8 +68,10 @@
 }
 
 .auth {
+  height: 16px;
   font-size: 12px;
   color: red;
+  margin-bottom: 6px;
 }
 
 ::placeholder {
