@@ -8,44 +8,49 @@ const Scenario = ({ scenario }) => (
     </div>
     <div className={styles.flexContainer}>
       <div className={styles.flexTable}>
+        <img className={styles.carImg} src={"https://s3.us-east-2.amazonaws.com/carousel-fec/carImg2.png"} alt="CarImg" />
         <div className={styles.align}>
-          Start: {scenario.startCity}
-          <br />
-          End: {scenario.endCity}
+        <div className={styles.innerFlex}>
+          <div><b>Start:</b></div><div>{scenario.startCity}</div>
+        </div>
+        <div className={styles.innerFlex}>
+          <div><b>End:</b></div><div>{scenario.endCity}</div>
+        </div>
+        <br />
+        <div className={styles.innerFlex}>
+          <div><b>Daily gas cost:</b></div><div>{scenario.dailyGasCost}</div>
+        </div>
         </div>
       </div>
       <div className={styles.flexTable}>
+        <img className={styles.img} src={"https://s3.us-east-2.amazonaws.com/carousel-fec/birdLogo.jpg"} alt="BirdLogo" />
         <div className={styles.align}>
-          Cost (per gallon): {scenario.costPerGallon}
-          <br />
-          Daily gas cost: {scenario.dailyGasCost}
-          <br />
-          Bird price: {scenario.birdPrice}
-        </div>
-      </div>
-      <div className={styles.flexTable}>
-        <div className={styles.align}>
-          <div className={styles.category}>
-            Uber
+          <div className={styles.innerFlex}>
+            <div><b>Scooter:</b></div><div>{scenario.birdPrice}</div>
           </div>
-          {scenario.uberRides.map((uber, i) => {
+        </div>
+      </div>
+      <div className={styles.flexTable}>
+        <img className={styles.img} src={"https://s3.us-east-2.amazonaws.com/carousel-fec/lyftLogo.jpg"} alt="LyftLogo" />
+        <div className={styles.align}>
+          {scenario.lyftRides.map((lyft, i) => {
             return (
-              <div key={i}>
-                <div>{uber.name}: {uber.price}</div>
+              <div key={i} className={styles.innerFlex}>
+                <div><b>{lyft.name}:</b></div>
+                <div>{lyft.price}</div>
               </div>
             );
           })}
         </div>
       </div>
       <div className={styles.flexTable}>
+      <img className={styles.img} src={"https://s3.us-east-2.amazonaws.com/carousel-fec/uberImg.png"} alt="UberLogo" />
         <div className={styles.align}>
-          <div className={styles.category}>
-            Lyft
-          </div>
-          {scenario.lyftRides.map((lyft, i) => {
+          {scenario.uberRides.map((uber, i) => {
             return (
-              <div key={i}>
-                <div>{lyft.name}: {lyft.price}</div>
+              <div key={i} className={styles.innerFlex}>
+                <div><b>{uber.name}:</b></div>
+                <div>{uber.price}</div>
               </div>
             );
           })}
