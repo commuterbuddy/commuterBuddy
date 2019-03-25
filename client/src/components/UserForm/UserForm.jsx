@@ -102,7 +102,7 @@ class UserForm extends Component {
               <input className={styles.textInput} type="text" name="mpg" onChange={this.props.handleGasChange} />
             </div>
             <div>
-              <input className={styles.submit} type="submit" value="Go" onClick={(e) => this.props.submit(e)} />
+              <input className={styles.submit} type="submit" value="Go" onClick={(e) => this.props.lookupSubmit(e)} />
             </div>
           </div>
 
