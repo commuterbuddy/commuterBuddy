@@ -48,7 +48,7 @@ router
   .post(controllers.postSignup);
 
 router
-  .post('/login')
+  .route('/login')
   .post(controllers.postLogin)
 
 module.exports = router;
