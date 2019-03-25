@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -77,19 +77,11 @@ class Statistics extends Component {
                 </div>  
               
                 <div className={styles.flexSubmit}>
-                  <div><input type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
-                   
-                  <Link to='/history' className={styles.button}>
-                    <button
-                      type="submit"
-                      onClick={(e) => this.props.submit(e)}
-                    >
-                Save
-              </button>
-            </Link>
+                  <div><input className={styles.textInput} type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
                 
-
-
+                <button className={styles.button} type="submit" onClick={(e) => this.props.tripSubmit(e)}>Save
+                  {this.props.tripSubmitted ? <Redirect to='/history' /> : null}
+                </button>
                                   
                 </div>
             

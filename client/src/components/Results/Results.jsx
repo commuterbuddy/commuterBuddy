@@ -36,7 +36,8 @@ export class Results extends Component {
       selectHomeCounty: undefined,
       selectHomeCity: undefined,
       selectWorkCounty: undefined,
-      selectWorkCity: undefined
+      selectWorkCity: undefined,
+      tripSubmitted: false
     };
 
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
@@ -54,8 +55,6 @@ export class Results extends Component {
   }
 
   toggleDropdownMenu(event) {
-    console.log('CLICKED!!!!!!!!!! TOGGLE DROPDOWN MENU');
-    // alert('yoooooooo')
     this.setState({
       [event.target.id]: !this.state[event.target.id]
     })
@@ -142,6 +141,9 @@ export class Results extends Component {
       .then(() => {
         console.log('success posting data')
       })
+      .then(this.setState({
+        tripSubmitted: true
+      }))
       .catch(err => {
         console.log('Error posting info')
       });
@@ -200,7 +202,7 @@ export class Results extends Component {
       position: 'absolute'
     };
 
-    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords} = this.state;
+    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted} = this.state;
 
     const centerCoords = startCoords ? this.getMidpoint(startCoords, endCoords) : null;
 
@@ -223,7 +225,7 @@ export class Results extends Component {
 
         <UserForm 
           className={MapStyles.formContainer} 
-          submit={this.handleSubmit}
+          lookupSubmit={this.handleSubmit}
           handleHomeCountyChange={this.handleHomeCountyChange}
           handleHomeCityChange={this.handleHomeCityChange}
           handleWorkCountyChange={this.handleWorkCountyChange}
@@ -298,8 +300,9 @@ export class Results extends Component {
           saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
           change={this.handleTripChange}
-          submit={this.handleTripSubmit}
-          path={this.props.path} />
+          tripSubmit={this.handleTripSubmit}
+          path={this.props.path}
+          tripSubmitted={tripSubmitted} />
       </div>
     )
   }
