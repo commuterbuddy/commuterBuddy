@@ -13,4 +13,4 @@ npm install
 ```
 
 ## Demo
-![](name-of-giphy.gif)
+![](commuterBuddy.gif)
