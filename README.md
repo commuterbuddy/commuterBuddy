@@ -1,8 +1,16 @@
-# commuterBuddy
+# CommuterBuddy
 
-An application that allows users to compare commuting times and prices for two destinations.  Returning users can view and access past itineraries.
+An application for  users to compare commuting costs. 
+Returning users can view and access past itineraries.
 
-To start this application:
+## Installation
 
-# npm install
-# npm run build
+Use package manager [npm](https://www.npmjs.com/get-npm) to install CommuterBuddy
+
+```bash
+npm run build
+npm install
+```
+
+## Demo
+![](name-of-giphy.gif)
