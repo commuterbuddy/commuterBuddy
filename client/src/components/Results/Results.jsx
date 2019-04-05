@@ -61,16 +61,16 @@ export class Results extends Component {
     var directionsService = new google.maps.DirectionsService();
 
     const request = {
-      origin: 'dana point, ca',
-      destination: 'laguna beach, ca',
+      origin: this.state.startCity,
+      destination: this.state.endCity,
       travelMode: 'DRIVING',
     };
+
     directionsService.route(request, function(result, status) {
       if (status === 'OK') {
         this.setState({
           route: result.routes[0].overview_path.map(p => {return {lat:p.lat(), lng:p.lng()}})
         });
-        console.log('THIS IS THE RESULT-----------', result);
       } else {
         console.err('error getting result', error);
       };
