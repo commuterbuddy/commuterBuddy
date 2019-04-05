@@ -12,6 +12,7 @@ export class Results extends Component {
     this.state = {
       startCoords: undefined,
       endCoords: undefined,
+      route: [],
       showingInfoWindow: false,
       showingDistanceWindow: true,
       activeMarker: {},
@@ -52,6 +53,28 @@ export class Results extends Component {
     this.handleTripChange = this.handleTripChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
     this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
+    this.calculateDistance = this.calculateDistance.bind(this);
+  }
+
+  calculateDistance() {
+    const { google } = this.props;
+    var directionsService = new google.maps.DirectionsService();
+
+    const request = {
+      origin: 'dana point, ca',
+      destination: 'laguna beach, ca',
+      travelMode: 'DRIVING',
+    };
+    directionsService.route(request, function(result, status) {
+      if (status === 'OK') {
+        this.setState({
+          route: result.routes[0].overview_path.map(p => {return {lat:p.lat(), lng:p.lng()}})
+        });
+        console.log('THIS IS THE RESULT-----------', result);
+      } else {
+        console.err('error getting result', error);
+      };
+    }.bind(this));
   }
 
   toggleDropdownMenu(event) {
@@ -178,6 +201,7 @@ export class Results extends Component {
           alert('Sorry, your commute is too far!  Time to move...');
         }
       })
+      .then(this.calculateDistance)
       .catch(err => {
         console.log('Error getting data', err)
       });
@@ -270,7 +294,7 @@ export class Results extends Component {
             </InfoWindow>
 
             <Polyline
-              path={[this.state.startCoords, this.state.endCoords]}
+              path={this.state.route}
               options={{
                 strokeColor: "#1885FF",
                 strokeOpacity: 0.8,
