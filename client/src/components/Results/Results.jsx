@@ -6,6 +6,8 @@ import MapStyles from './MapStyles.css';
 import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 
+// need to add componentDidMount -- send a get request to a cities endpoint - return an object with all of the cities for each county
+
 export class Results extends Component {
   constructor(props) {
     super(props);
@@ -111,6 +113,7 @@ export class Results extends Component {
 
   handleHomeCountyChange(event) {
     console.log('this is the event.target.id', event.target.id);
+
     this.setState({
       homeCounty: event.target.id,
       hCoMenu: !this.state.hCoMenu
