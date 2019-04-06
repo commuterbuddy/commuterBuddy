@@ -60,7 +60,7 @@ class UserForm extends Component {
                 (
                 <ul className={styles.list}>
                   {this.state.counties.map(county => {
-                    return <li className={styles.items} onClick={this.props.handleHomeCountyChange} id={county.toLowerCase()} >{county}</li>
+                    return <li className={styles.items} onClick={this.props.handleWorkCountyChange} id={county.toLowerCase()} >{county}</li>
                   })}
                 </ul>
                 ) : null
