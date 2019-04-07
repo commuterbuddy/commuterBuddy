@@ -15,9 +15,9 @@ class UserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      counties: ['Alameda', 'Los Angeles', 'Orange', 'Riverside', 'Sacramento', 'San Bernardino', 'San Diego', 'San Francisco', 'Santa Barbara', 'Santa Clara']
     };
    }
-
 
   render() {
     return (
@@ -30,16 +30,9 @@ class UserForm extends Component {
               { this.props.hCoMenu ? 
                 (
                 <ul className={styles.list}>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="alameda" >Alameda</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="los angeles" >Los Angeles</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="orange" >Orange</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="riverside" >Riverside</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="sacramento" >Sacramento</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="san bernardino" >San Bernardino</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="san diego" >San Diego</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="san francisco" >San Francisco</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="santa barbara" >Santa Barbara</li>
-                  <li className={styles.items} onClick={this.props.handleHomeCountyChange} id="santa clara" >Santa Clara</li>
+                  {this.state.counties.map(county => {
+                    return <li className={styles.items} onClick={this.props.handleHomeCountyChange} id={county.toLowerCase()} >{county}</li>
+                  })}
                 </ul>
               ) : null
             } 
@@ -66,16 +59,9 @@ class UserForm extends Component {
               { this.props.wCoMenu ? 
                 (
                 <ul className={styles.list}>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="alameda">Alameda</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="los angeles">Los Angeles</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="orange">Orange</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="riverside">Riverside</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="sacramento">Sacramento</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="san bernardino">San Bernardino</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="san diego">San Diego</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="san francisco">San Francisco</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="santa barbara">Santa Barbara</li>
-                  <li className={styles.items} onClick={this.props.handleWorkCountyChange} id="santa clara">Santa Clara</li>
+                  {this.state.counties.map(county => {
+                    return <li className={styles.items} onClick={this.props.handleWorkCountyChange} id={county.toLowerCase()} >{county}</li>
+                  })}
                 </ul>
                 ) : null
               }   
