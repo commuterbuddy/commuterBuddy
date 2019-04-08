@@ -12,6 +12,7 @@ export class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      counties: {},
       startCoords: undefined,
       endCoords: undefined,
       route: [],
@@ -56,7 +57,27 @@ export class Results extends Component {
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
     this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
     this.calculateDistance = this.calculateDistance.bind(this);
+    this.getCounties = this.getCounties.bind(this);
   }
+
+  componentDidMount() {
+    this.getCounties();
+  };
+
+  getCounties() {
+    axios
+      .get('/api/counties')
+      .then(({data}) => {
+        this.setState({
+          counties: data
+        })
+      })
+      .catch(err => {
+        console.log('Error getting county data', err);
+      });
+  }
+
+
 
   calculateDistance() {
     const { google } = this.props;
@@ -80,6 +101,7 @@ export class Results extends Component {
   }
 
   toggleDropdownMenu(event) {
+    console.log('THIS IS EVENT.TARGET.ID------------', event.target.id);
     this.setState({
       [event.target.id]: !this.state[event.target.id]
     })
@@ -112,7 +134,7 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
-    console.log('this is the event.target.id', event.target.id);
+    // console.log('this is the event.target.id', event.target.id);
 
     this.setState({
       homeCounty: event.target.id,
@@ -175,15 +197,9 @@ export class Results extends Component {
       });
   }
 
-
-
-
-
   handleSubmit(event) {
     event.preventDefault();
     const {startCity, endCity, mpg} = this.state;
-
-    console.log('THESE ARE THE PARAMS------------', startCity, endCity, mpg);
 
     axios
       .get('/api/prices', {params: {startCity, endCity, mpg}})
@@ -251,7 +267,8 @@ export class Results extends Component {
       <div className={MapStyles.container}>
 
         <UserForm 
-          className={MapStyles.formContainer} 
+          className={MapStyles.formContainer}
+          counties={this.state.counties} 
           lookupSubmit={this.handleSubmit}
           handleHomeCountyChange={this.handleHomeCountyChange}
           handleHomeCityChange={this.handleHomeCityChange}
