@@ -4,8 +4,6 @@
 
 */
 
-
-
 const countyData = {
   'Alameda': ['Oakland'],
   'Los Angeles': ['Burbank', 'Downey', 'El Monte', 'Glendale', 'Lancaster', 'Long Beach', 'Los Angeles', 'Norwalk', 'Northridge', 'Palmdale', 'Pasadena', 'Pomona', 'Santa Clarita', 'Torrance', 'West Covina'],

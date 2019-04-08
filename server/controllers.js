@@ -1,10 +1,16 @@
 const bcrypt = require('bcrypt');
 const getPrice = require('./apis/price');
 const dummyData = require('./dummyData.js');
+const countyData = require('./countyData.js');
 const { User, Scenario } = require('../database/models');
 const saltRounds = 10;
 
 module.exports = {
+  getCounties: (req, res) => {
+    res.status(200).send(countyData);
+  },
+
+
   getPrices: (req, res) => {
     const { startCity, endCity, mpg } = req.query;
 
@@ -17,7 +23,7 @@ module.exports = {
       });
   },
   getScenarios: (req, res) => {
-    res.status(200).send(dummyData)
+    res.status(200).send(dummyData);
   },
 
   postScenarios: (req, res) => {

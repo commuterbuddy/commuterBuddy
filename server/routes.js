@@ -31,6 +31,10 @@ const controllers = require('./controllers.js');
 */
 
 router
+  .route('/counties')
+  .get(controllers.getCounties);
+
+router
   .route('/prices')
   .get(controllers.getPrices);
 
