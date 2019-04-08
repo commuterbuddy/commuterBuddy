@@ -9,15 +9,16 @@
   // everything else is the same and can be mapped over in the parent UserForm component
 
 import React from 'react';
-import styles from '../UserFormStyles.css';
+import styles from './UserFormStyles.css';
 
 const County = (props) => {
-  if (props.hCiMenu || props.wCiMenu) {
+
+  if ((props.hCiMenu || props.wCiMenu) && props.cities) {
     return (
       <ul className={styles.list}>
         {props.cities.map(city => {
-          <li className={styles.items} onClick={(event) => props.change(event)} id={city.id}>{city.value}</li>          
-        })}
+          return <li className={styles.items} onClick={(event) => props.change(event)} id={city.toLowerCase()}>{city}</li>          
+        })}      
       </ul>
     )
   }

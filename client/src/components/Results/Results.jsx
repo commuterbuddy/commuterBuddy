@@ -101,6 +101,7 @@ export class Results extends Component {
   }
 
   toggleDropdownMenu(event) {
+    console.log('THIS IS EVENT.TARGET.ID------------', event.target.id);
     this.setState({
       [event.target.id]: !this.state[event.target.id]
     })
@@ -133,7 +134,7 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
-    console.log('this is the event.target.id', event.target.id);
+    // console.log('this is the event.target.id', event.target.id);
 
     this.setState({
       homeCounty: event.target.id,
