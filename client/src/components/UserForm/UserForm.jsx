@@ -15,7 +15,6 @@ class UserForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      counties: ['Alameda', 'Los Angeles', 'Orange', 'Riverside', 'Sacramento', 'San Bernardino', 'San Diego', 'San Francisco', 'Santa Barbara', 'Santa Clara']
     };
    }
 
