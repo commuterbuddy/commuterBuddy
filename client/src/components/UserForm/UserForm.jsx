@@ -18,7 +18,9 @@ class UserForm extends Component {
         <h1>Find my commute</h1>
           <b>Home</b>
 
-          <DropDown toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} id='hCoMenu' menus={menus} counties={counties} handleHomeCountyChange={handleHomeCountyChange} />
+          <DropDown className={styles.dropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} type='county' id='hCoMenu' menu={menus.hCoMenu} counties={counties} handleChange={handleHomeCountyChange} />
+          
+          <DropDown className={styles.cityDropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} cityType={startCity} type='city' id='hCiMenu' menu={menus.hCiMenu} counties={counties} handleChange={handleHomeCityChange} />
           
           <div className={styles.cityDropdown}>
             <div id="hCiMenu" className={styles.button} onClick={toggleDropdownMenu}>{startCity ? startCity : 'Select City'}</div>
@@ -27,20 +29,7 @@ class UserForm extends Component {
           
           <b>Work</b>
 
-          <DropDown toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} menus={menus.wCoMenu} counties={counties} handleHomeCountyChange={handleHomeCountyChange} />
-
-          <div className={styles.dropdown}>
-            <div id="wCoMenu" className={styles.button} onClick={toggleDropdownMenu}>{workCounty ? workCounty : 'Select County'}</div>
-              { menus.wCoMenu ? 
-                (
-                <ul className={styles.list}>
-                  {Object.keys(counties).map(county => {
-                    return <li className={styles.items} onClick={handleWorkCountyChange} id={county} >{county}</li>
-                  })}
-                </ul>
-                ) : null
-              }   
-          </div>
+          <DropDown toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} type='county' id='wCoMenu' menu={menus.wCoMenu} counties={counties} handleCountyChange={handleWorkCountyChange} />
 
           <div className={styles.cityDropdown}>
             <div id="wCiMenu" className={styles.button} onClick={toggleDropdownMenu}>{endCity ? endCity : 'Select City'}</div>

@@ -4,16 +4,19 @@ import styles from './UserFormStyles.css';
 
 const DropDown = (props) => {
 
-  const { toggleDropdownMenu, countyType, menus, id, counties, handleHomeCountyChange } = props;
+  const { className, toggleDropdownMenu, countyType, menu, id, type, counties, handleChange } = props;
 
   return (
-    <div className={styles.dropdown}>            
-      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType ? countyType : 'Select County'}</div>
-        { menus.hCoMenu ? 
+    <div className={className}>            
+      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType ? countyType : cityType ? cityType : type === 'county' ? 'Select County' : type === 'city' ? 'Select City'}</div>
+        { 
+          menu && countyType ? <County cities={counties[countyType]} change={handleChange} menu={menus.hCiMenu} /> :
+  
+          menu ? 
           (
             <ul className={styles.list}>
               {Object.keys(counties).map(county => {
-                return <li className={styles.items} onClick={handleHomeCountyChange} id={county} >{county}</li>
+                return <li className={styles.items} onClick={handleChange} id={county} >{county}</li>
               })}  
             </ul> 
           ) : null
