@@ -8,7 +8,7 @@ const DropDown = (props) => {
 
   return (
     <div className={className}>            
-      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType && cityType ? cityType : countyType ? countyType : type === 'county' ? 'Select County' : 'Select City'}</div>
+      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType && type === 'county' ? countyType : cityType && type === 'city' ? cityType : type === 'county' ? 'Select County' : 'Select City'}</div>
         { 
           menu && countyType ? <County cities={counties[countyType]} change={handleChange} menu={menu} /> :
   
