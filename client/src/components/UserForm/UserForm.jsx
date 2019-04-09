@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import County from './County.jsx';
+import DropDown from './DropDown.jsx';
 import styles from './UserFormStyles.css';
 
 class UserForm extends Component {
@@ -11,38 +11,27 @@ class UserForm extends Component {
 
   render() {
 
-    const { counties, className, toggleDropdownMenu, homeCounty, workCounty, handleHomeCountyChange, handleWorkCountyChange, handleHomeCityChange, handleWorkCityChange, startCity, endCity, hCiMenu, wCiMenu, hCoMenu, wCoMenu } = this.props;
+    const { counties, className, toggleDropdownMenu, homeCounty, workCounty, handleHomeCountyChange, handleWorkCountyChange, handleHomeCityChange, handleWorkCityChange, startCity, endCity, menus } = this.props;
 
     return (
       <div className={`${className} ${styles.form}`}>
         <h1>Find my commute</h1>
           <b>Home</b>
 
-          <div className={styles.dropdown}>            
-            <div id="hCoMenu" className={styles.button} onClick={toggleDropdownMenu}>{homeCounty ? homeCounty : 'Select County'}</div>
-              { hCoMenu ? 
-                (
-
-                  <ul className={styles.list}>
-                    {Object.keys(counties).map(county => {
-                      return <li className={styles.items} onClick={handleHomeCountyChange} id={county} >{county}</li>
-                    })}  
-                  </ul>
-              
-                ) : null
-            } 
-          </div>
+          <DropDown toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} id='hCoMenu' menus={menus} counties={counties} handleHomeCountyChange={handleHomeCountyChange} />
           
           <div className={styles.cityDropdown}>
             <div id="hCiMenu" className={styles.button} onClick={toggleDropdownMenu}>{startCity ? startCity : 'Select City'}</div>
-              {hCiMenu && homeCounty ? <County cities={counties[homeCounty]} change={handleHomeCityChange} hCiMenu={hCiMenu} /> : null}
+              {menus.hCiMenu && homeCounty ? <County cities={counties[homeCounty]} change={handleHomeCityChange} hCiMenu={menus.hCiMenu} /> : null}
           </div>
           
           <b>Work</b>
 
+          <DropDown toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} menus={menus.wCoMenu} counties={counties} handleHomeCountyChange={handleHomeCountyChange} />
+
           <div className={styles.dropdown}>
             <div id="wCoMenu" className={styles.button} onClick={toggleDropdownMenu}>{workCounty ? workCounty : 'Select County'}</div>
-              { wCoMenu ? 
+              { menus.wCoMenu ? 
                 (
                 <ul className={styles.list}>
                   {Object.keys(counties).map(county => {
@@ -55,7 +44,7 @@ class UserForm extends Component {
 
           <div className={styles.cityDropdown}>
             <div id="wCiMenu" className={styles.button} onClick={toggleDropdownMenu}>{endCity ? endCity : 'Select City'}</div>
-              {wCiMenu && workCounty ? <County cities={counties[workCounty]} change={handleWorkCityChange} wCiMenu={wCiMenu} /> : null}
+              {menus.wCiMenu && workCounty ? <County cities={counties[workCounty]} change={handleWorkCityChange} wCiMenu={menus.wCiMenu} /> : null}
           </div>
         
           <b>Average Miles Per Gallon (MPG)</b>   
