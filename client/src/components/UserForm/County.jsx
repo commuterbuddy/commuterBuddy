@@ -13,7 +13,7 @@ import styles from './UserFormStyles.css';
 
 const County = (props) => {
 
-  if ((props.hCiMenu || props.wCiMenu) && props.cities) {
+  if ((props.menu) && props.cities) {
     return (
       <ul className={styles.list}>
         {props.cities.map(city => {

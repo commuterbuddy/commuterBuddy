@@ -1,16 +1,16 @@
 import React from 'react';
-// import County from './County.jsx';
+import County from './County.jsx';
 import styles from './UserFormStyles.css';
 
 const DropDown = (props) => {
 
-  const { className, toggleDropdownMenu, countyType, menu, id, type, counties, handleChange } = props;
+  const { className, toggleDropdownMenu, countyType, cityType, menu, id, type, counties, handleChange } = props;
 
   return (
     <div className={className}>            
-      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType ? countyType : cityType ? cityType : type === 'county' ? 'Select County' : type === 'city' ? 'Select City'}</div>
+      <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType && cityType ? cityType : countyType ? countyType : type === 'county' ? 'Select County' : 'Select City'}</div>
         { 
-          menu && countyType ? <County cities={counties[countyType]} change={handleChange} menu={menus.hCiMenu} /> :
+          menu && countyType ? <County cities={counties[countyType]} change={handleChange} menu={menu} /> :
   
           menu ? 
           (
