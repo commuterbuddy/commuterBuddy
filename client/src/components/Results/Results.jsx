@@ -247,6 +247,13 @@ export class Results extends Component {
 
     const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted} = this.state;
 
+    const menus = {
+      hCoMenu: this.state.hCoMenu,
+      hCiMenu: this.state.hCiMenu,
+      wCoMenu: this.state.wCoMenu,
+      wCiMenu: this.state.wCiMenu
+    };
+
     const centerCoords = startCoords ? this.getMidpoint(startCoords, endCoords) : null;
 
     let points;
@@ -280,10 +287,7 @@ export class Results extends Component {
           startCity={this.state.startCity}
           endCity={this.state.endCity}
           toggleDropdownMenu={this.toggleDropdownMenu}
-          hCoMenu={this.state.hCoMenu}
-          hCiMenu={this.state.hCiMenu} 
-          wCoMenu={this.state.wCoMenu} 
-          wCiMenu={this.state.wCiMenu}  />
+          menus={menus} />
         
         <div className={MapStyles.mapContainer} >          
           <Map 
