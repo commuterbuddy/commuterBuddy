@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DropDown from './DropDown.jsx';
+import Input from './Input.jsx';
 import styles from './UserFormStyles.css';
 
 class UserForm extends Component {
@@ -11,7 +12,7 @@ class UserForm extends Component {
 
   render() {
 
-    const { counties, className, toggleDropdownMenu, homeCounty, workCounty, handleHomeCountyChange, handleWorkCountyChange, handleHomeCityChange, handleWorkCityChange, startCity, endCity, menus } = this.props;
+    const { counties, className, toggleDropdownMenu, homeCounty, workCounty, handleHomeCountyChange, handleWorkCountyChange, handleHomeCityChange, handleWorkCityChange, handleInputChange, startCity, endCity, menus } = this.props;
 
     return (
       <div className={`${className} ${styles.form}`}>
@@ -30,10 +31,10 @@ class UserForm extends Component {
         
           <b>Average Miles Per Gallon (MPG)</b>   
 
-          <div className={styles.input}>           
-            <div>  
-              <input className={styles.textInput} type="text" name="mpg" onChange={this.props.handleGasChange} />
-            </div>
+          <div className={styles.input}>  
+
+            <Input className={styles.textInput} id='mpg' handleChange={handleInputChange} type='text' />
+
             <div>
               <input className={styles.submit} type="submit" value="Go" onClick={(e) => this.props.lookupSubmit(e)} />
             </div>

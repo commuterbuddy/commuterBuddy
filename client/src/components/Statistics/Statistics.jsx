@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Input from '../UserForm/Input.jsx';
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -77,7 +78,8 @@ class Statistics extends Component {
                 </div>  
               
                 <div className={styles.flexSubmit}>
-                  <div><input className={styles.textInput} type="text" name="tripName" placeholder="Name your trip" onChange={this.props.change} /></div>
+
+                  <Input className={styles.textInput} id='tripName' type='text' placeholder='Name your trip' handleChange={this.props.handleInputChange} />
                 
                 <button className={styles.button} type="submit" onClick={(e) => this.props.tripSubmit(e)}>Save
                   {this.props.tripSubmitted ? <Redirect to='/history' /> : null}
