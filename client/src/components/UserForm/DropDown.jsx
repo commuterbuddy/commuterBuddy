@@ -1,5 +1,6 @@
 import React from 'react';
-import County from './County.jsx';
+import Cities from './Cities.jsx';
+import Counties from './Counties.jsx';
 import styles from './UserFormStyles.css';
 
 const DropDown = (props) => {
@@ -10,16 +11,9 @@ const DropDown = (props) => {
     <div className={className}>            
       <div id={id} className={styles.button} onClick={toggleDropdownMenu}>{countyType && type === 'county' ? countyType : cityType && type === 'city' ? cityType : type === 'county' ? 'Select County' : 'Select City'}</div>
         { 
-          menu && countyType && type === 'city' ? <County cities={counties[countyType]} change={handleChange} menu={menu} /> :
+          menu && countyType && type === 'city' ? <Cities cities={counties[countyType]} change={handleChange} menu={menu} /> :
   
-          menu ? 
-          (
-            <ul className={styles.list}>
-              {Object.keys(counties).map(county => {
-                return <li className={styles.items} onClick={handleChange} id={county} >{county}</li>
-              })}  
-            </ul> 
-          ) : null
+          menu ? <Counties counties={counties} change={handleChange} /> : null
         } 
       </div>
   )
