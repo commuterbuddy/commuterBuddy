@@ -52,8 +52,7 @@ export class Results extends Component {
     this.handleHomeCityChange = this.handleHomeCityChange.bind(this);
     this.handleWorkCountyChange = this.handleWorkCountyChange.bind(this);
     this.handleWorkCityChange = this.handleWorkCityChange.bind(this);
-    this.handleGasChange = this.handleGasChange.bind(this);
-    this.handleTripChange = this.handleTripChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
     this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
     this.calculateDistance = this.calculateDistance.bind(this);
@@ -101,7 +100,6 @@ export class Results extends Component {
   }
 
   toggleDropdownMenu(event) {
-    console.log('THIS IS EVENT.TARGET.ID------------', event.target.id);
     this.setState({
       [event.target.id]: !this.state[event.target.id]
     })
@@ -165,16 +163,9 @@ export class Results extends Component {
     })
   }
 
-  handleTripChange(event) {
+  handleInputChange(event) {
     this.setState({
-      tripName: event.target.value
-    })
-  }
-
-  handleGasChange(event) {
-    let mpg = parseInt(event.target.value);
-    this.setState({
-      mpg: mpg
+      [event.target.id]: event.target.value
     });
   }
 
@@ -281,7 +272,7 @@ export class Results extends Component {
           handleHomeCityChange={this.handleHomeCityChange}
           handleWorkCountyChange={this.handleWorkCountyChange}
           handleWorkCityChange={this.handleWorkCityChange}
-          handleGasChange={this.handleGasChange}
+          handleInputChange={this.handleInputChange}
           homeCounty={this.state.homeCounty}
           workCounty={this.state.workCounty}
           startCity={this.state.startCity}
@@ -347,7 +338,7 @@ export class Results extends Component {
           uberImg="https://s3.us-east-2.amazonaws.com/carousel-fec/uberImg.png"
           saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
-          change={this.handleTripChange}
+          handleInputChange={this.handleInputChange}
           tripSubmit={this.handleTripSubmit}
           path={this.props.path}
           tripSubmitted={tripSubmitted} />
