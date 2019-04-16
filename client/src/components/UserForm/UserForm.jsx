@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DropDown from './DropDown.jsx';
-import Input from './Input.jsx';
+import Input from '../factoryComponents/Input.jsx';
 import styles from './UserFormStyles.css';
 
 class UserForm extends Component {
