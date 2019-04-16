@@ -85,7 +85,7 @@ class Statistics extends Component {
 
                   <Input className={textInput} id='tripName' type='text' placeholder='Name your trip' handleChange={handleInputChange} />  
                 
-                <Button className={buttonStyle} id="Save" submitFunc={tripSubmit} tripSubmitted={tripSubmitted} />
+                  <Button className={buttonStyle} id="Save" submitFunc={tripSubmit} tripSubmitted={tripSubmitted} />
                                   
                 </div>
             

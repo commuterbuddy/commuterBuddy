@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DropDown from './DropDown.jsx';
 import Input from '../factoryComponents/Input.jsx';
+import Button from '../factoryComponents/Button.jsx';
 import styles from './UserFormStyles.css';
 
 class UserForm extends Component {
@@ -35,9 +36,8 @@ class UserForm extends Component {
 
             <Input className={styles.textInput} id='mpg' handleChange={handleInputChange} type='text' />
 
-            <div>
-              <input className={styles.submit} type="submit" value="Go" onClick={(e) => this.props.lookupSubmit(e)} />
-            </div>
+            <Button className={styles.submit} id='Go' submitFunc={this.props.lookupSubmit} />
+
           </div>
 
         </div>
