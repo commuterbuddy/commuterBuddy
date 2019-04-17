@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Input from '../UserForm/Input.jsx';
+import Input from '../factoryComponents/Input.jsx';
+import Button from '../factoryComponents/Button.jsx'
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -11,39 +11,43 @@ class Statistics extends Component {
   }
 
   render() {
+
+    const { button, className, carImg, carPrice, birdImg, birdPrice, lyftImg, lyftRides, uberImg, uberRides, handleInputChange, tripSubmit, tripSubmitted } = this.props;
+
+    const { buttonStyle, card, carImgStyle, carContainer, options, item, img, container, name, price, flexInput, border, flexSubmit, textInput } = styles;
     
     return (
       
-      <div className={this.props.className.statsContainer}>
+      <div className={className.statsContainer}>
         
-        <div className={this.props.className.statsFlex}>
+        <div className={className.statsFlex}>
 
-            <div className={styles.card}>
-              <img className={styles.carImg} src={this.props.carImg} alt="CarImg" />
-              <div className={styles.carContainer}>
-                <div className={styles.options}>
-                  {this.props.carPrice.costPerGallon ? <p className={styles.item}><b>Price per gallon</b>{`$${this.props.carPrice.costPerGallon.toFixed(2)}`}</p> : null}
-                  {this.props.carPrice.dailyGasCost ? <p className={styles.item}><b>Price per day</b>{this.props.carPrice.dailyGasCost}</p> : null}
+            <div className={card}>
+              <img className={carImgStyle} src={carImg} alt="CarImg" />
+              <div className={carContainer}>
+                <div className={options}>
+                  {carPrice.costPerGallon ? <p className={item}><b>Price per gallon</b>{`$${carPrice.costPerGallon.toFixed(2)}`}</p> : null}
+                  {carPrice.dailyGasCost ? <p className={item}><b>Price per day</b>{carPrice.dailyGasCost}</p> : null}
                 </div>
               </div>          
             </div>
 
-            <div className={styles.card}>
-              <img className={styles.img} src={this.props.birdImg} alt="BirdLogo" />
-              <div className={styles.container}>
-                <div className={styles.options}>
-                  {this.props.birdPrice ? <p className={styles.item}><b>Scooter</b>{this.props.birdPrice}</p> : null}
+            <div className={card}>
+              <img className={img} src={birdImg} alt="BirdLogo" />
+              <div className={container}>
+                <div className={options}>
+                  {birdPrice ? <p className={item}><b>Scooter</b>{birdPrice}</p> : null}
                 </div>
               </div>          
             </div>
 
-            <div className={styles.card}>
-              <img className={styles.img} src={this.props.lyftImg} alt="LyftLogo" />
-              <div className={styles.container}>
-                <ul className={styles.options}>
-                  {this.props.lyftRides.map((option) => {
+            <div className={card}>
+              <img className={img} src={lyftImg} alt="LyftLogo" />
+              <div className={container}>
+                <ul className={options}>
+                  {lyftRides.map((option) => {
                     return (
-                      <li className={styles.item}>
+                      <li className={item}>
                         <b>{option.name}</b>{option.price}
                       </li>
                     )
@@ -52,13 +56,13 @@ class Statistics extends Component {
               </div>          
             </div>
 
-            <div className={styles.card}>
-              <img className={styles.img} src={this.props.uberImg} alt="LyftLogo" />
-              <div className={styles.container}>
-                <ul className={styles.options}>
-                  {this.props.uberRides.map((option) => {
+            <div className={card}>
+              <img className={img} src={uberImg} alt="LyftLogo" />
+              <div className={container}>
+                <ul className={options}>
+                  {uberRides.map((option) => {
                     return (
-                      <li className={styles.item}>
+                      <li className={item}>
                         <b>{option.name}</b>{option.price}
                       </li>
                     )
@@ -68,22 +72,20 @@ class Statistics extends Component {
             </div>
 
             
-            {this.props.carPrice.costPerGallon ? 
-            <div className={styles.flexInput}>
+            {carPrice.costPerGallon ? 
+            <div className={flexInput}>
 
-              <div className={styles.border}>
+              <div className={border}>
             
                 <div>
                   <h2>Save this commute?</h2>
                 </div>  
               
-                <div className={styles.flexSubmit}>
+                <div className={flexSubmit}>
 
-                  <Input className={styles.textInput} id='tripName' type='text' placeholder='Name your trip' handleChange={this.props.handleInputChange} />
+                  <Input className={textInput} id='tripName' type='text' placeholder='Name your trip' handleChange={handleInputChange} />  
                 
-                <button className={styles.button} type="submit" onClick={(e) => this.props.tripSubmit(e)}>Save
-                  {this.props.tripSubmitted ? <Redirect to='/history' /> : null}
-                </button>
+                  <Button className={buttonStyle} id="Save" submitFunc={tripSubmit} tripSubmitted={tripSubmitted} />
                                   
                 </div>
             
