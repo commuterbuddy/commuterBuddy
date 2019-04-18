@@ -25,11 +25,8 @@ class Statistics extends Component {
         <div className={className.statsFlex}>
 
           <Card cardType="car" cardStyle={card} imgStyle={carImgStyle} itemStyle={item} src={carImg} alt="CarImg" containerStyle={carContainer} optionsStyle={options} price={carPrice} />
-
-          <Card cardType="bird" cardStyle={card} imgStyle={img} itemStyle={item} src={birdImg} alt="BirdLogo" containerStyle={container} optionsStyle={options} price={birdPrice} />
-          
-          <ListCard cardStyle={card} imgStyle={img} itemStyle={item} src={lyftImg} alt="LyftLogo" containerStyle={container} optionsStyle={options} rides={lyftRides} />
-          
+          <Card cardType="bird" cardStyle={card} imgStyle={img} itemStyle={item} src={birdImg} alt="BirdLogo" containerStyle={container} optionsStyle={options} price={birdPrice} />          
+          <ListCard cardStyle={card} imgStyle={img} itemStyle={item} src={lyftImg} alt="LyftLogo" containerStyle={container} optionsStyle={options} rides={lyftRides} />          
           <ListCard cardStyle={card} imgStyle={img} itemStyle={item} src={uberImg} alt="UberLogo" containerStyle={container} optionsStyle={options} rides={uberRides} />
             
             {carPrice.costPerGallon ? 
@@ -42,11 +39,8 @@ class Statistics extends Component {
                 </div>  
               
                 <div className={flexSubmit}>
-
                   <Input className={textInput} id='tripName' type='text' placeholder='Name your trip' handleChange={handleInputChange} />  
-                
-                  <Button className={buttonStyle} id="Save" submitFunc={tripSubmit} tripSubmitted={tripSubmitted} />
-                                  
+                  <Button className={buttonStyle} id="Save" submitFunc={tripSubmit} tripSubmitted={tripSubmitted} />                                 
                 </div>
             
               </div>
