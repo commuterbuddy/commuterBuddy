@@ -336,7 +336,6 @@ export class Results extends Component {
           birdImg="https://s3.us-east-2.amazonaws.com/carousel-fec/birdLogo.jpg"
           lyftImg="https://s3.us-east-2.amazonaws.com/carousel-fec/lyftLogo.jpg"
           uberImg="https://s3.us-east-2.amazonaws.com/carousel-fec/uberImg.png"
-          saveImg="https://s3.us-east-2.amazonaws.com/carousel-fec/saveImg.png"
           uberRides={uberRides}
           handleInputChange={this.handleInputChange}
           tripSubmit={this.handleTripSubmit}

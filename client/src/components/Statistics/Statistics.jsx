@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../factoryComponents/Input.jsx';
-import Button from '../factoryComponents/Button.jsx'
+import Button from '../factoryComponents/Button.jsx';
+import Card from '../factoryComponents/Card.jsx';
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -22,15 +23,7 @@ class Statistics extends Component {
         
         <div className={className.statsFlex}>
 
-            <div className={card}>
-              <img className={carImgStyle} src={carImg} alt="CarImg" />
-              <div className={carContainer}>
-                <div className={options}>
-                  {carPrice.costPerGallon ? <p className={item}><b>Price per gallon</b>{`$${carPrice.costPerGallon.toFixed(2)}`}</p> : null}
-                  {carPrice.dailyGasCost ? <p className={item}><b>Price per day</b>{carPrice.dailyGasCost}</p> : null}
-                </div>
-              </div>          
-            </div>
+          <Card cardType="car" cardStyle={card} imgStyle={carImgStyle} itemStyle={item} src={carImg} alt="CarImg" containerStyle={carContainer} optionsStyle={options} price={carPrice} />
 
             <div className={card}>
               <img className={img} src={birdImg} alt="BirdLogo" />
