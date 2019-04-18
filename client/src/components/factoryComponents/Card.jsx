@@ -10,8 +10,9 @@ const Card = (props) => {
       <img className={imgStyle} src={src} alt={alt} />
       <div className={containerStyle}>
         <div className={optionsStyle}>
-          {price.costPerGallon ? <p className={itemStyle}><b>Price per gallon</b>{`$${price.costPerGallon.toFixed(2)}`}</p> : null}
-          {price.dailyGasCost ? <p className={itemStyle}><b>Price per day</b>{price.dailyGasCost}</p> : null}
+          {cardType === 'car' && price.costPerGallon ? <p className={itemStyle}><b>Price per gallon</b>{`$${price.costPerGallon.toFixed(2)}`}</p> :
+          cardType === 'car' && price.dailyGasCost ? <p className={itemStyle}><b>Price per day</b>{price.dailyGasCost}</p> : 
+          cardType === 'bird' && price ? <p className={itemStyle}><b>Scooter</b>{price}</p> : null}
         </div>
       </div>          
     </div>
@@ -20,6 +21,7 @@ const Card = (props) => {
 }
 
 export default Card;            
+
 
 /*
 

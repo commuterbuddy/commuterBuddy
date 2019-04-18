@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from '../factoryComponents/Input.jsx';
 import Button from '../factoryComponents/Button.jsx';
 import Card from '../factoryComponents/Card.jsx';
+import ListCard from '../factoryComponents/ListCard.jsx';
 import styles from './OptionStyles.css';
 
 class Statistics extends Component {
@@ -25,29 +26,11 @@ class Statistics extends Component {
 
           <Card cardType="car" cardStyle={card} imgStyle={carImgStyle} itemStyle={item} src={carImg} alt="CarImg" containerStyle={carContainer} optionsStyle={options} price={carPrice} />
 
-            <div className={card}>
-              <img className={img} src={birdImg} alt="BirdLogo" />
-              <div className={container}>
-                <div className={options}>
-                  {birdPrice ? <p className={item}><b>Scooter</b>{birdPrice}</p> : null}
-                </div>
-              </div>          
-            </div>
+          <Card cardType="bird" cardStyle={card} imgStyle={img} itemStyle={item} src={birdImg} alt="BirdLogo" containerStyle={container} optionsStyle={options} price={birdPrice} />
+          
+          <ListCard cardType="lyft" cardStyle={card} imgStyle={img} itemStyle={item} src={lyftImg} alt="LyftLogo" containerStyle={container} optionsStyle={options} rides={lyftRides} />
 
-            <div className={card}>
-              <img className={img} src={lyftImg} alt="LyftLogo" />
-              <div className={container}>
-                <ul className={options}>
-                  {lyftRides.map((option) => {
-                    return (
-                      <li className={item}>
-                        <b>{option.name}</b>{option.price}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>          
-            </div>
+
 
             <div className={card}>
               <img className={img} src={uberImg} alt="LyftLogo" />
