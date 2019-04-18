@@ -28,25 +28,9 @@ class Statistics extends Component {
 
           <Card cardType="bird" cardStyle={card} imgStyle={img} itemStyle={item} src={birdImg} alt="BirdLogo" containerStyle={container} optionsStyle={options} price={birdPrice} />
           
-          <ListCard cardType="lyft" cardStyle={card} imgStyle={img} itemStyle={item} src={lyftImg} alt="LyftLogo" containerStyle={container} optionsStyle={options} rides={lyftRides} />
-
-
-
-            <div className={card}>
-              <img className={img} src={uberImg} alt="LyftLogo" />
-              <div className={container}>
-                <ul className={options}>
-                  {uberRides.map((option) => {
-                    return (
-                      <li className={item}>
-                        <b>{option.name}</b>{option.price}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>          
-            </div>
-
+          <ListCard cardStyle={card} imgStyle={img} itemStyle={item} src={lyftImg} alt="LyftLogo" containerStyle={container} optionsStyle={options} rides={lyftRides} />
+          
+          <ListCard cardStyle={card} imgStyle={img} itemStyle={item} src={uberImg} alt="UberLogo" containerStyle={container} optionsStyle={options} rides={uberRides} />
             
             {carPrice.costPerGallon ? 
             <div className={flexInput}>
