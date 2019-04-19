@@ -88,35 +88,35 @@ class Login extends Component {
         <div className={styles.container2}>
           <form className={styles.login}>
             <h2>Log in or sign up</h2>
-            <label htmlFor="email" className={styles.label}>
+            <label htmlFor='email' className={styles.label}>
               <input
                 className={styles.input}
-                id="email"
-                name="email"
-                type="text"
-                placeholder="Email"
+                id='email'
+                name='email'
+                type='text'
+                placeholder='Email'
                 value={email}
                 onChange={this.handleChange}
               />
             </label>
-            <label htmlFor="username" className={styles.label}>
+            <label htmlFor='username' className={styles.label}>
               <input
                 className={styles.input}
-                id="username"
-                name="username"
-                type="text"
-                placeholder="Username"
+                id='username'
+                name='username'
+                type='text'
+                placeholder='Username'
                 value={username}
                 onChange={this.handleChange}
               />
             </label>
-            <label htmlFor="password" className={styles.label}>
+            <label htmlFor='password' className={styles.label}>
               <input
                 className={styles.input}
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
+                id='password'
+                name='password'
+                type='password'
+                placeholder='Password'
                 value={password}
                 onChange={this.handleChange}
               />
@@ -125,14 +125,14 @@ class Login extends Component {
               {authResponse}
             </div>
             <button
-              type="submit"
+              type='submit'
               className={styles.button}
               onClick={this.handleSignup}
             >
               Sign up
             </button>
             <button
-              type="submit"
+              type='submit'
               className={styles.button}
               onClick={this.handleLogin}
             >
