@@ -7,21 +7,20 @@ class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
     }
   }
 
   componentDidMount() {
-    const user = localStorage.getItem('user');
+    const email = localStorage.getItem('email');
     axios
-      .get("/api/scenariosDev", {params: {username: user}})
-      .then(({data}) => {
+      .get("/api/scenariosDev", { params: { email } })
+      .then(({ data }) => {
         this.setState({
-          username: user,
-          data: [...data]
+          data: [...data],
         });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -33,14 +32,16 @@ class History extends Component {
           <div className={styles.container}>
             <div>
               <h2>{user}'s Commute History</h2>
-              {data.map((scenario, i) => <Scenario key={i} scenario={scenario} />)}
+              {data.map((scenario) => <Scenario key={scenario._id} scenario={scenario} />)}
             </div>
           </div>
         );
       } else {
-        <div>
-          <h2>You have no commute history saved.</h2>
-        </div>
+        return (
+          <div>
+            <h2>You have no commute history saved.</h2>
+          </div>
+        );
       }
     } else {
       return null;

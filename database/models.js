@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const scenarioSchema = new mongoose.Schema({
-  userName: String,
+  email: String,
   tripName: String,
   startCity: String,
   endCity: String,

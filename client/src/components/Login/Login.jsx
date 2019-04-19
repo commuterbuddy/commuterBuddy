@@ -31,6 +31,7 @@ class Login extends Component {
       .then((res) => {
         if (res.data === email) {
           localStorage.setItem('user', username);
+          localStorage.setItem('email', email);
           this.props.authenticate();
         }
       })
@@ -60,6 +61,7 @@ class Login extends Component {
       .then((res) => {
         if (res.data.email) {
           localStorage.setItem('user', res.data.username);
+          localStorage.setItem('email', email);
           this.props.authenticate();
         }
       })
