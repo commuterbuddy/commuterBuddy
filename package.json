@@ -47,9 +47,11 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "is-empty": "^1.2.0",
     "mongoose": "^5.4.19",
     "node-lyft": "^1.0.3",
     "node-uber": "^2.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "validator": "^10.11.0"
   }
 }
