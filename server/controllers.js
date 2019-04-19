@@ -25,9 +25,6 @@ module.exports = {
         res.status(404).send(err);
       });
   },
-  getScenarios: (req, res) => {
-    res.status(200).send(dummyData);
-  },
 
   postScenarios: (req, res) => {
     const scenarioObject = req.body;
@@ -42,8 +39,8 @@ module.exports = {
   },
 
   getAllScenarios: (req, res) => {
-    const { username: userName } = req.query;
-    Scenario.find({ userName })
+    const { email } = req.query;
+    Scenario.find({ email })
       .then((data) => {
         res.status(200).send(data);
       })

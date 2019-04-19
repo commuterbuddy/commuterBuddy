@@ -39,10 +39,6 @@ router
   .get(controllers.getPrices);
 
 router
-  .route('/scenarios')
-  .get(controllers.getScenarios);
-
-router
   .route('/scenariosDev')
   .post(controllers.postScenarios)
   .get(controllers.getAllScenarios);
