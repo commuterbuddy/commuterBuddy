@@ -72,9 +72,9 @@ class Login extends Component {
         } else if (errMsg.password) {
           this.setState({
             authResponse: errMsg.password,
-          })
+          });
         }
-      })
+      });
   }
 
   render() {
@@ -88,9 +88,10 @@ class Login extends Component {
         <div className={styles.container2}>
           <form className={styles.login}>
             <h2>Log in or sign up</h2>
-            <label className={styles.label}>
+            <label htmlFor="email" className={styles.label}>
               <input
                 className={styles.input}
+                id="email"
                 name="email"
                 type="text"
                 placeholder="Email"
@@ -98,9 +99,10 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <label className={styles.label}>
+            <label htmlFor="username" className={styles.label}>
               <input
                 className={styles.input}
+                id="username"
                 name="username"
                 type="text"
                 placeholder="Username"
@@ -108,9 +110,10 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <label className={styles.label}>
+            <label htmlFor="password" className={styles.label}>
               <input
                 className={styles.input}
+                id="password"
                 name="password"
                 type="password"
                 placeholder="Password"
