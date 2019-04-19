@@ -1,10 +1,19 @@
 const mongoose = require('mongoose');
 
+mongoose.set('useCreateIndex', true);
+
 const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    trim: true,
+    index: true,
+    unique: true,
+  },
   username: {
     type: String,
+    trim: true,
     index: true,
-    unique: true
+    unique: true,
   },
   password: String,
 });
