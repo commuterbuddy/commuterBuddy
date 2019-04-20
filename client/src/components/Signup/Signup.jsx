@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../Home/Home.css';
 
-const Login = ({ handleLogin, handleChange, email, password, username, authResponse }) => {
+const Signup = ({ handleSignup, handleChange, email, password, username, authResponse }) => {
   return (
     <>
       <label htmlFor='email' className={styles.label}>
@@ -12,6 +12,17 @@ const Login = ({ handleLogin, handleChange, email, password, username, authRespo
           type='text'
           placeholder='Email'
           value={email}
+          onChange={(e) => handleChange(e)}
+        />
+      </label>
+      <label htmlFor='username' className={styles.label}>
+        <input
+          className={styles.input}
+          id='username'
+          name='username'
+          type='text'
+          placeholder='Username'
+          value={username}
           onChange={(e) => handleChange(e)}
         />
       </label>
@@ -32,12 +43,12 @@ const Login = ({ handleLogin, handleChange, email, password, username, authRespo
       <button
         type='submit'
         className={styles.button}
-        onClick={(e) => handleLogin(e)}
+        onClick={(e) => handleSignup(e)}
       >
-        Log in
+        Sign up
       </button>
     </>
   );
 }
 
-export default Login;
+export default Signup;

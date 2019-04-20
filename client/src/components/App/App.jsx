@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation.jsx';
-import Login from '../Login/Login.jsx';
+import Home from '../Home/Home.jsx';
 import Results from '../Results/Results.jsx';
 import History from '../History/History.jsx';
 
@@ -31,7 +31,7 @@ class App extends Component {
       <HashRouter>
         <Navigation authenticate={this.handleAuthenticate} authenticated={authenticated} />
         <Switch>
-          <Route path='/' exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
+          <Route path='/' exact render={() => <Home authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
           <Route path='/results' component={Results} />
           <Route exact path='/history' render={() => <History />} />
         </Switch>
