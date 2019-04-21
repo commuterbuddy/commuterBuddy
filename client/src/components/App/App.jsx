@@ -31,7 +31,7 @@ class App extends Component {
       <HashRouter>
         <Navigation authenticate={this.handleAuthenticate} authenticated={authenticated} />
         <Switch>
-          <Route path="/" exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
+          <Route path='/' exact render={() => <Login authenticate={this.handleAuthenticate} authenticated={authenticated}/>}  />
           <Route path='/results' component={Results} />
           <Route exact path='/history' render={() => <History />} />
         </Switch>

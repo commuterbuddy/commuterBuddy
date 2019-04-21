@@ -7,9 +7,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
       username: '',
       password: '',
-      authResponse: false
+      authResponse: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
@@ -18,67 +19,68 @@ class Login extends Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
   handleSignup(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { email, username, password } = this.state;
     axios
-      .post('/api/signup', { username, password })
+      .post('/api/signup', { email, username, password })
       .then((res) => {
-        if (res.data === username) {
-          // window.location.href="/#/results";
+        if (res.data === email) {
           localStorage.setItem('user', username);
-          // this.setState({
-          //   auth: true
-          // })
+          localStorage.setItem('email', email);
           this.props.authenticate();
-        } else if (res.data === 'Name not available') {
-          this.setState({
-            authResponse: res.data
-          })
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => {
+        const errMsg = err.response.data;
+        if (errMsg.username) {
+          this.setState({
+            authResponse: errMsg.email,
+          });
+        } else if (errMsg.email) {
+          this.setState({
+            authResponse: errMsg.email,
+          });
+        } else if (errMsg.password) {
+          this.setState({
+            authResponse: errMsg.password,
+          });
+        }
+      });
   }
 
   handleLogin(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     axios
-      .post('/api/login', { username, password })
+      .post('/api/login', { email, password })
       .then((res) => {
-        if (res.data === username) {
-          localStorage.setItem('user', username);
-          // this.setState({
-          //   auth: true
-          // })
+        if (res.data.email) {
+          localStorage.setItem('user', res.data.username);
+          localStorage.setItem('email', email);
           this.props.authenticate();
-        } else if (res.data === 'Incorrect password') {
-          this.setState({
-            authResponse: res.data
-          })
-        } else if (res.data === 'Username doesn\'t exist') {
-          this.setState({
-            authResponse: res.data
-          })
         }
       })
-      .catch(err => console.log(err))
-  }
-
-  validateForm() {
-    const { username, password } = this.state;
-    return (
-      username.length > 0
-      && password.length > 0
-    );
+      .catch((err) => {
+        const errMsg = err.response.data;
+        if (errMsg.email) {
+          this.setState({
+            authResponse: errMsg.email,
+          })
+        } else if (errMsg.password) {
+          this.setState({
+            authResponse: errMsg.password,
+          });
+        }
+      });
   }
 
   render() {
-    const { username, password, authResponse } = this.state;
+    const { email, username, password, authResponse } = this.state;
 
     if (this.props.authenticated === true) {
       return <Redirect to='/results'/>
@@ -88,42 +90,51 @@ class Login extends Component {
         <div className={styles.container2}>
           <form className={styles.login}>
             <h2>Log in or sign up</h2>
-            <label className={styles.label}>
+            <label htmlFor='email' className={styles.label}>
               <input
                 className={styles.input}
-                name="username"
-                type="text"
-                placeholder="Username"
+                id='email'
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={this.handleChange}
+              />
+            </label>
+            <label htmlFor='username' className={styles.label}>
+              <input
+                className={styles.input}
+                id='username'
+                name='username'
+                type='text'
+                placeholder='Username'
                 value={username}
                 onChange={this.handleChange}
               />
             </label>
-            <label className={styles.label}>
+            <label htmlFor='password' className={styles.label}>
               <input
                 className={styles.input}
-                name="password"
-                type="password"
-                placeholder="Password"
+                id='password'
+                name='password'
+                type='password'
+                placeholder='Password'
                 value={password}
                 onChange={this.handleChange}
               />
             </label>
             <div className={styles.auth}>
-              {authResponse === 'Name not available' ? 'Name already taken' : ''}
-              {authResponse === 'Incorrect password' ? 'Incorrect password' : ''}
-              {authResponse === 'Username doesn\'t exist' ? 'Username doesn\'t exist' : ''}
+              {authResponse}
             </div>
             <button
-              type="submit"
-              disabled={!this.validateForm()}
+              type='submit'
               className={styles.button}
               onClick={this.handleSignup}
             >
               Sign up
             </button>
             <button
-              type="submit"
-              disabled={!this.validateForm()}
+              type='submit'
               className={styles.button}
               onClick={this.handleLogin}
             >
