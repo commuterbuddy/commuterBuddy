@@ -106,7 +106,7 @@ class Home extends Component {
             </button>
             {this.state.display
               ? <Signup handleSignup={this.handleSignup} handleChange={this.handleChange} {...this.state} />
-              : <Login handleLogin={this.handleLogin} {...this.state} />
+              : <Login handleLogin={this.handleLogin} handleChange={this.handleChange} {...this.state} />
             }
           </form>
         </div>

@@ -12,7 +12,7 @@ const Signup = ({ handleSignup, handleChange, email, password, username, authRes
           type='text'
           placeholder='Email'
           value={email}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         />
       </label>
       <label htmlFor='username' className={styles.label}>
@@ -23,7 +23,7 @@ const Signup = ({ handleSignup, handleChange, email, password, username, authRes
           type='text'
           placeholder='Username'
           value={username}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         />
       </label>
       <label htmlFor='password' className={styles.label}>
@@ -34,7 +34,7 @@ const Signup = ({ handleSignup, handleChange, email, password, username, authRes
           type='password'
           placeholder='Password'
           value={password}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         />
       </label>
       <div className={styles.auth}>
@@ -43,12 +43,12 @@ const Signup = ({ handleSignup, handleChange, email, password, username, authRes
       <button
         type='submit'
         className={styles.button}
-        onClick={(e) => handleSignup(e)}
+        onClick={e => handleSignup(e)}
       >
         Sign up
       </button>
     </>
   );
-}
+};
 
 export default Signup;

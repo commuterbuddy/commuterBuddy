@@ -12,7 +12,7 @@ const Login = ({ handleLogin, handleChange, email, password, username, authRespo
           type='text'
           placeholder='Email'
           value={email}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         />
       </label>
       <label htmlFor='password' className={styles.label}>
@@ -23,7 +23,7 @@ const Login = ({ handleLogin, handleChange, email, password, username, authRespo
           type='password'
           placeholder='Password'
           value={password}
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
         />
       </label>
       <div className={styles.auth}>
@@ -32,7 +32,7 @@ const Login = ({ handleLogin, handleChange, email, password, username, authRespo
       <button
         type='submit'
         className={styles.button}
-        onClick={(e) => handleLogin(e)}
+        onClick={e => handleLogin(e)}
       >
         Log in
       </button>
