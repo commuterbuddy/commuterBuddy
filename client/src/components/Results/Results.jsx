@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps-react';
-import { googleMapsToken } from '../../../../config.js';
-import MapStyles from './MapStyles.css';
+import MapStyles from '../Map/MapStyles.css';
+import MappedRoute from '../Map/MappedRoute.jsx';
 import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 
@@ -16,10 +15,7 @@ export class Results extends Component {
       startCoords: undefined,
       endCoords: undefined,
       route: [],
-      showingInfoWindow: false,
       showingDistanceWindow: true,
-      activeMarker: {},
-      selectedPlace: {},
       homeCounty: '',
       workCounty: '',
       startCity: '',
@@ -32,6 +28,7 @@ export class Results extends Component {
       dailyGasCost: undefined,
       costPerGallon: undefined,
       tripName: '',
+      userName: '',
       hCoMenu: false,
       hCiMenu: false,
       wCoMenu: false,
@@ -43,9 +40,6 @@ export class Results extends Component {
       tripSubmitted: false
     };
 
-    this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
-    this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
-    this.onMapClicked = this.onMapClicked.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHomeCountyChange = this.handleHomeCountyChange.bind(this);
     this.handleHomeCityChange = this.handleHomeCityChange.bind(this);
@@ -105,30 +99,8 @@ export class Results extends Component {
   }
 
 
-  onHomeMarkerClick(props, marker, event) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }  
 
-  onWorkMarkerClick(props, marker, event) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }
 
-  onMapClicked(props) {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  }
 
   handleHomeCountyChange(event) {
     // console.log('this is the event.target.id', event.target.id);
@@ -171,11 +143,11 @@ export class Results extends Component {
   handleTripSubmit(e) {
     e.preventDefault();
 
-    const email = localStorage.getItem('email');
+    const userName = localStorage.getItem('user');
     const {tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
-      .post('/api/scenariosDev', {email, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
+      .post('/api/scenariosDev', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
       .then(() => {
         console.log('success posting data')
       })
@@ -229,13 +201,9 @@ export class Results extends Component {
     };
 
 
-    const style = {
-      width: '75%',
-      height: '720px',
-      position: 'absolute'
-    };
 
-    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted} = this.state;
+
+    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
 
     const menus = {
       hCoMenu: this.state.hCoMenu,
@@ -278,54 +246,14 @@ export class Results extends Component {
           endCity={this.state.endCity}
           toggleDropdownMenu={this.toggleDropdownMenu}
           menus={menus} />
-        
-        <div className={MapStyles.mapContainer} >          
-          <Map 
-            google={this.props.google}
-            onClick={this.onMapClicked}
-            style={style}
-            className={'map'}
-            initialCenter={{lat: 34.0522, lng: -118.2437}}
-            bounds={this.state.startCoords ? bounds : null}
-            >
 
-            <Marker
-              name={'Home'}
-              position={this.state.startCoords}
-              onClick={this.onHomeMarkerClick} />
-
-            <Marker
-              name={'Work'}
-              position={this.state.endCoords}
-              onClick={this.onWorkMarkerClick} />
-          
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-            </InfoWindow>
-
-            <Polyline
-              path={this.state.route}
-              options={{
-                strokeColor: "#1885FF",
-                strokeOpacity: 0.8,
-                strokeWeight: 4,            
-              }}
-            />
-
-          </Map>
-        </div>
-
-        {distance ? 
-          <div className={MapStyles.distancePop}>
-            <h1>Distance: {distance} miles</h1>
-          </div>
-         : null}
-        
-        
+        <MappedRoute 
+          startCoords={startCoords}
+          endCoords={endCoords}
+          route={route}
+          distance={distance}  
+        />
+                
         <Statistics 
           className={MapStyles}
           carPrice={carObj}
@@ -345,7 +273,5 @@ export class Results extends Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: googleMapsToken
-})(Results);
+export default Results;
 
