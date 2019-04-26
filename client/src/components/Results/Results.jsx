@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { googleMapsToken } from '../../../../config.js';
 import axios from 'axios';
 import MapStyles from '../Map/MapStyles.css';
 import MappedRoute from '../Map/MappedRoute.jsx';
@@ -69,8 +71,6 @@ export class Results extends Component {
       });
   }
 
-
-
   calculateDistance() {
     const { google } = this.props;
     var directionsService = new google.maps.DirectionsService();
@@ -97,10 +97,6 @@ export class Results extends Component {
       [event.target.id]: !this.state[event.target.id]
     })
   }
-
-
-
-
 
   handleHomeCountyChange(event) {
     // console.log('this is the event.target.id', event.target.id);
@@ -188,20 +184,11 @@ export class Results extends Component {
       });
   }
 
-  getMidpoint(start, end) {
-    const lat = ((start.lat + end.lat) / 2);
-    const lng = ((start.lng + end.lng) / 2);
-    return {lat, lng};
-  }
-
   render() {
     const carObj = {
       dailyGasCost: this.state.dailyGasCost,
       costPerGallon: this.state.costPerGallon
     };
-
-
-
 
     const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
 
@@ -211,21 +198,6 @@ export class Results extends Component {
       wCoMenu: this.state.wCoMenu,
       wCiMenu: this.state.wCiMenu
     };
-
-    const centerCoords = startCoords ? this.getMidpoint(startCoords, endCoords) : null;
-
-    let points;
-    let bounds;
-
-    if (startCoords) {
-      points = [
-        startCoords, endCoords
-      ];
-      bounds = new this.props.google.maps.LatLngBounds();
-      for (var i = 0; i < points.length; i++) {
-        bounds.extend(points[i]);
-      }
-    }
 
     return (
 
@@ -273,5 +245,8 @@ export class Results extends Component {
   }
 }
 
-export default Results;
+export default GoogleApiWrapper({
+  apiKey: googleMapsToken
+})(Results);
+
 

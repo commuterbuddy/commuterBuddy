@@ -14,6 +14,7 @@ export class MappedRoute extends Component {
     this.onMapClicked = this.onMapClicked.bind(this);
     this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
     this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
+    this.renderRoute = this.renderRoute.bind(this);
   }
 
   onMapClicked(props) {
@@ -41,6 +42,24 @@ export class MappedRoute extends Component {
     });
   }
 
+  renderRoute() {
+    let points;
+    let bounds;
+
+    if (this.props.startCoords) {
+      points = [
+        this.props.startCoords, this.props.endCoords
+      ];
+      
+      bounds = new this.props.google.maps.LatLngBounds();
+    
+      for (var i = 0; i < points.length; i++) {
+        bounds.extend(points[i]);
+      }
+    }
+    return bounds;
+  }
+
   render() {
 
     const { google, startCoords, endCoords, route, distance } = this.props;
@@ -63,7 +82,7 @@ export class MappedRoute extends Component {
           style={style}
           className={'map'}
           initialCenter={{lat: 34.0522, lng: -118.2437}}
-          bounds={startCoords ? bounds : null}
+          bounds={startCoords ? this.renderRoute() : null}
           >
 
           <Marker
