@@ -99,8 +99,6 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
-    // console.log('this is the event.target.id', event.target.id);
-
     this.setState({
       homeCounty: event.target.id,
       hCoMenu: !this.state.hCoMenu
