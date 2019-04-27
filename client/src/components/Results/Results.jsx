@@ -71,6 +71,8 @@ export class Results extends Component {
       });
   }
 
+
+
   calculateDistance() {
     const { google } = this.props;
     var directionsService = new google.maps.DirectionsService();
@@ -99,6 +101,8 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
+    // console.log('this is the event.target.id', event.target.id);
+
     this.setState({
       homeCounty: event.target.id,
       hCoMenu: !this.state.hCoMenu
@@ -139,6 +143,7 @@ export class Results extends Component {
 
     const userName = localStorage.getItem('user');
     const email = localStorage.getItem('email');
+    
     const {tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
