@@ -138,10 +138,11 @@ export class Results extends Component {
     e.preventDefault();
 
     const userName = localStorage.getItem('user');
+    const email = localStorage.getItem('email');
     const {tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
-      .post('/api/scenariosDev', {userName, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
+      .post('/api/scenariosDev', {userName, email, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
       .then(() => {
         console.log('success posting data')
       })
