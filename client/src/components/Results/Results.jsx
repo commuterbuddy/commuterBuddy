@@ -7,8 +7,6 @@ import MappedRoute from '../Map/MappedRoute.jsx';
 import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 
-// need to add componentDidMount -- send a get request to a cities endpoint - return an object with all of the cities for each county
-
 export class Results extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +15,6 @@ export class Results extends Component {
       startCoords: undefined,
       endCoords: undefined,
       route: [],
-      showingDistanceWindow: true,
       homeCounty: '',
       workCounty: '',
       startCity: '',
@@ -35,11 +32,9 @@ export class Results extends Component {
       hCiMenu: false,
       wCoMenu: false,
       wCiMenu: false,
-      selectHomeCounty: undefined,
-      selectHomeCity: undefined,
-      selectWorkCounty: undefined,
-      selectWorkCity: undefined,
-      tripSubmitted: false
+      tripSubmitted: false,
+      homeCounty: '',
+      workCounty: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,8 +66,6 @@ export class Results extends Component {
       });
   }
 
-
-
   calculateDistance() {
     const { google } = this.props;
     var directionsService = new google.maps.DirectionsService();
@@ -101,8 +94,6 @@ export class Results extends Component {
   }
 
   handleHomeCountyChange(event) {
-    // console.log('this is the event.target.id', event.target.id);
-
     this.setState({
       homeCounty: event.target.id,
       hCoMenu: !this.state.hCoMenu
@@ -143,7 +134,6 @@ export class Results extends Component {
 
     const userName = localStorage.getItem('user');
     const email = localStorage.getItem('email');
-    
     const {tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon} = this.state;
 
     axios
@@ -202,7 +192,7 @@ export class Results extends Component {
       wCoMenu: this.state.wCoMenu,
       wCiMenu: this.state.wCiMenu
     };
-
+    
     return (
 
       <div className={MapStyles.container}>
