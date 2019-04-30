@@ -1,57 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Map, Marker, InfoWindow, Polyline, GoogleApiWrapper } from 'google-maps-react';
 import { googleMapsToken } from '../../../../config.js';
 import MapStyles from './MapStyles.css';
 
-export class MappedRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-    };
-    this.onMapClicked = this.onMapClicked.bind(this);
-    this.onHomeMarkerClick = this.onHomeMarkerClick.bind(this);
-    this.onWorkMarkerClick = this.onWorkMarkerClick.bind(this);
-    this.renderRoute = this.renderRoute.bind(this);
+export const MappedRoute = (props) => {
+
+  const [status, setStatus] = useState({
+    selectedPlace: '',
+    activeMarker: {},
+    showingInfoWindow: false
+  });
+
+  const { showingInfoWindow, activeMarker, selectedPlace } = status;
+
+  const { google, startCoords, endCoords, route, distance } = props;
+
+  const updateMarker = (props, marker) => {
+    const markerName = marker.name;
+    setStatus({
+      showingInfoWindow: true,
+      selectedPlace: markerName,
+      activeMarker: marker
+    });
   }
 
-  onMapClicked(props) {
-    if (this.state.showingInfoWindow) {
-      this.setState({
+  const hideMarker = props => {
+    if (showingInfoWindow) {
+      setStatus({
         showingInfoWindow: false,
         activeMarker: null
       });
     }
   }
 
-  onHomeMarkerClick(props, marker, event) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }  
-
-  onWorkMarkerClick(props, marker, event) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }
-
-  renderRoute() {
+  const renderRoute = () => {
     let points;
     let bounds;
 
-    if (this.props.startCoords) {
+    if (props.startCoords) {
       points = [
-        this.props.startCoords, this.props.endCoords
+        props.startCoords, props.endCoords
       ];
       
-      bounds = new this.props.google.maps.LatLngBounds();
+      bounds = new props.google.maps.LatLngBounds();
     
       for (var i = 0; i < points.length; i++) {
         bounds.extend(points[i]);
@@ -59,12 +50,6 @@ export class MappedRoute extends Component {
     }
     return bounds;
   }
-
-  render() {
-
-    const { google, startCoords, endCoords, route, distance } = this.props;
-
-    const { activeMarker, showingInfoWindow, selectedPlace } = this.state;
 
     const style = {
       width: '75%',
@@ -78,23 +63,23 @@ export class MappedRoute extends Component {
         
         <Map 
           google={google}
-          onClick={this.onMapClicked}
+          onClick={hideMarker}
           style={style}
           className={'map'}
           initialCenter={{lat: 34.0522, lng: -118.2437}}
-          bounds={startCoords ? this.renderRoute() : null}
+          bounds={startCoords ? renderRoute() : null}
           >
 
           <Marker
             name={'Home'}
             position={startCoords}
-            onClick={this.onHomeMarkerClick} 
+            onClick={updateMarker} 
            />
 
           <Marker
             name={'Work'}
             position={endCoords}
-            onClick={this.onWorkMarkerClick} 
+            onClick={updateMarker} 
           />
           
           <InfoWindow
@@ -103,7 +88,7 @@ export class MappedRoute extends Component {
           >
               
             <div>
-              <h1>{selectedPlace.name}</h1>
+              <h1>{selectedPlace}</h1>
             </div>
         
           </InfoWindow>
@@ -128,7 +113,6 @@ export class MappedRoute extends Component {
       </div>
 
     )
-  }
 }
 
 export default GoogleApiWrapper({
