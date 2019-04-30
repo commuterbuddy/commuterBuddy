@@ -6,7 +6,7 @@ import styles from './UserFormStyles.css';
 
 const UserForm = (props) => {
 
-  const { counties, className, toggleDropdownMenu, handleHomeCityChange, handleWorkCityChange, handleHomeCountyChange, handleWorkCountyChange, handleInputChange, startCity, endCity, menus, homeCounty, workCounty } = props;
+  const { counties, className, toggleDropdownMenu, handleDropDownChange, handleInputChange, startCity, endCity, menus, homeCounty, workCounty } = props;
 
   const { hCiMenu, hCoMenu, wCiMenu, wCoMenu } = menus;
 
@@ -17,13 +17,13 @@ const UserForm = (props) => {
       
       <b>Home</b>
 
-      <DropDown className={styles.dropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} type='county' id='hCoMenu' menu={hCoMenu} counties={counties} handleChange={handleHomeCountyChange} />
-      <DropDown className={styles.cityDropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} cityType={startCity} type='city' id='hCiMenu' menu={hCiMenu} counties={counties} handleChange={handleHomeCityChange} />
+      <DropDown className={styles.dropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} list='hCoMenu' type='county' keyName='homeCounty' id='hCoMenu' menu={hCoMenu} counties={counties} handleDropDownChange={handleDropDownChange} />
+      <DropDown className={styles.cityDropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={homeCounty} list='hCiMenu' keyName='startCity' cityType={startCity} type='city' id='hCiMenu' menu={hCiMenu} counties={counties} handleDropDownChange={handleDropDownChange} />
       
       <b>Work</b>
 
-      <DropDown className={styles.dropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} type='county' id='wCoMenu' menu={wCoMenu} counties={counties} handleChange={handleWorkCountyChange} />
-      <DropDown className={styles.cityDropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} cityType={endCity} type='city' id='wCiMenu' menu={wCiMenu} counties={counties} handleChange={handleWorkCityChange} />          
+      <DropDown className={styles.dropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} list='wCoMenu' keyName='workCounty' type='county' id='wCoMenu' menu={wCoMenu} counties={counties} handleDropDownChange={handleDropDownChange} />
+      <DropDown className={styles.cityDropdown} toggleDropdownMenu={toggleDropdownMenu} countyType={workCounty} list='wCiMenu' keyName='endCity' cityType={endCity} type='city' id='wCiMenu' menu={wCiMenu} counties={counties} handleDropDownChange={handleDropDownChange} />          
 
       <b>Average Miles Per Gallon (MPG)</b>   
 
