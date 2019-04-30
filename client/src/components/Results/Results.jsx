@@ -32,16 +32,11 @@ export class Results extends Component {
       hCiMenu: false,
       wCoMenu: false,
       wCiMenu: false,
-      tripSubmitted: false,
-      homeCounty: '',
-      workCounty: ''
+      tripSubmitted: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleHomeCountyChange = this.handleHomeCountyChange.bind(this);
-    this.handleHomeCityChange = this.handleHomeCityChange.bind(this);
-    this.handleWorkCountyChange = this.handleWorkCountyChange.bind(this);
-    this.handleWorkCityChange = this.handleWorkCityChange.bind(this);
+    this.handleDropDownChange = this.handleDropDownChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
     this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
@@ -93,34 +88,13 @@ export class Results extends Component {
     })
   }
 
-  handleHomeCountyChange(event) {
+  handleDropDownChange(e) {
+    const keyName = e.target.getAttribute('keyName');
+    const dropDown = e.target.getAttribute('list');
     this.setState({
-      homeCounty: event.target.id,
-      hCoMenu: !this.state.hCoMenu
-    })
-  }
-
-  handleHomeCityChange(event) {
-    console.log('this is the event.target.id', event.target.id);
-    this.setState({
-      startCity: event.target.id,
-      hCiMenu: !this.state.hCiMenu
-    })
-
-  }
-
-  handleWorkCountyChange(event) {
-    this.setState({
-      workCounty: event.target.id,
-      wCoMenu: !this.state.wCoMenu
-    })
-  }
-
-  handleWorkCityChange(event) {
-    this.setState({
-      endCity: event.target.id,
-      wCiMenu: !this.state.wCiMenu 
-    })
+      [keyName]: event.target.innerHTML,
+      [dropDown]: !this.state[dropDown]
+    });
   }
 
   handleInputChange(event) {
@@ -179,12 +153,13 @@ export class Results extends Component {
   }
 
   render() {
-    const carObj = {
-      dailyGasCost: this.state.dailyGasCost,
-      costPerGallon: this.state.costPerGallon
-    };
 
     const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
+
+    const carObj = {
+      dailyGasCost: dailyGasCost,
+      costPerGallon: costPerGallon
+    };
 
     const menus = {
       hCoMenu: this.state.hCoMenu,
@@ -201,10 +176,7 @@ export class Results extends Component {
           className={MapStyles.formContainer}
           counties={this.state.counties} 
           lookupSubmit={this.handleSubmit}
-          handleHomeCountyChange={this.handleHomeCountyChange}
-          handleHomeCityChange={this.handleHomeCityChange}
-          handleWorkCountyChange={this.handleWorkCountyChange}
-          handleWorkCityChange={this.handleWorkCityChange}
+          handleDropDownChange={this.handleDropDownChange}
           handleInputChange={this.handleInputChange}
           homeCounty={this.state.homeCounty}
           workCounty={this.state.workCounty}
