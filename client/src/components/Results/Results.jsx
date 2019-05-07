@@ -6,6 +6,7 @@ import MapStyles from '../Map/MapStyles.css';
 import MappedRoute from '../Map/MappedRoute.jsx';
 import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
+import { toggleDropdownMenu, handleDropDownChange, handleInputChange } from '../factoryFunctions/functions.js';
 
 export class Results extends Component {
   constructor(props) {
@@ -32,20 +33,21 @@ export class Results extends Component {
       hCiMenu: false,
       wCoMenu: false,
       wCiMenu: false,
-      tripSubmitted: false
+      tripSubmitted: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDropDownChange = this.handleDropDownChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDropDownChange = handleDropDownChange.bind(this);
+    this.handleInputChange = handleInputChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
-    this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
+    this.toggleDropdownMenu = toggleDropdownMenu.bind(this);
     this.calculateDistance = this.calculateDistance.bind(this);
     this.getCounties = this.getCounties.bind(this);
   }
 
   componentDidMount() {
     this.getCounties();
+    console.log('THIS IS toggleDropdownMenu: ', this.toggleDropdownMenu);
   };
 
   getCounties() {
@@ -80,27 +82,6 @@ export class Results extends Component {
         console.err('error getting result', error);
       };
     }.bind(this));
-  }
-
-  toggleDropdownMenu(event) {
-    this.setState({
-      [event.target.id]: !this.state[event.target.id]
-    })
-  }
-
-  handleDropDownChange(e) {
-    const keyName = e.target.getAttribute('keyName');
-    const dropDown = e.target.getAttribute('list');
-    this.setState({
-      [keyName]: event.target.innerHTML,
-      [dropDown]: !this.state[dropDown]
-    });
-  }
-
-  handleInputChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
   }
 
   handleTripSubmit(e) {
