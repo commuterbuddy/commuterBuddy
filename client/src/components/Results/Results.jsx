@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import { googleMapsToken } from '../../../../config.js';
 import axios from 'axios';
@@ -8,63 +8,52 @@ import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 import { toggleDropdownMenu, handleDropDownChange, handleInputChange } from '../factoryFunctions/functions.js';
 
-export class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      counties: {},
-      startCoords: undefined,
-      endCoords: undefined,
-      route: [],
-      homeCounty: '',
-      workCounty: '',
-      startCity: '',
-      endCity: '',
-      mpg: undefined,
-      distance: undefined,
-      lyftRides: [],
-      uberRides: [],
-      birdPrice: undefined,
-      dailyGasCost: undefined,
-      costPerGallon: undefined,
-      tripName: '',
-      userName: '',
-      hCoMenu: false,
-      hCiMenu: false,
-      wCoMenu: false,
-      wCiMenu: false,
-      tripSubmitted: false,
-    };
+const Results = (props) => {
+    // this.state = {
+    //   counties: {},
+    //   startCoords: undefined,
+    //   endCoords: undefined,
+    //   route: [],
+    //   homeCounty: '',
+    //   workCounty: '',
+    //   startCity: '',
+    //   endCity: '',
+    //   mpg: undefined,
+    //   distance: undefined,
+    //   lyftRides: [],
+    //   uberRides: [],
+    //   birdPrice: undefined,
+    //   dailyGasCost: undefined,
+    //   costPerGallon: undefined,
+    //   tripName: '',
+    //   userName: '',
+    //   hCoMenu: false,
+    //   hCiMenu: false,
+    //   wCoMenu: false,
+    //   wCiMenu: false,
+    //   tripSubmitted: false,
+    // };
+  
+  const [counties, setCounties] = useState({});
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDropDownChange = handleDropDownChange.bind(this);
-    this.handleInputChange = handleInputChange.bind(this);
-    this.handleTripSubmit = this.handleTripSubmit.bind(this);
-    this.toggleDropdownMenu = toggleDropdownMenu.bind(this);
-    this.calculateDistance = this.calculateDistance.bind(this);
-    this.getCounties = this.getCounties.bind(this);
-  }
+  useEffect(() => {
+    getCounties();
+    console.log('THIS IS toggleDropdownMenu: ', toggleDropdownMenu);
+  });
 
-  componentDidMount() {
-    this.getCounties();
-    console.log('THIS IS toggleDropdownMenu: ', this.toggleDropdownMenu);
-  };
-
-  getCounties() {
+  const getCounties = () => {
     axios
       .get('/api/counties')
       .then(({data}) => {
-        this.setState({
-          counties: data
-        })
+        setCounties({ counties: data })
       })
       .catch(err => {
         console.log('Error getting county data', err);
       });
-  }
+  };
 
   calculateDistance() {
-    const { google } = this.props;
+    const { google } = props;
     var directionsService = new google.maps.DirectionsService();
 
     const request = {
