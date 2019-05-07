@@ -6,6 +6,7 @@ import MapStyles from '../Map/MapStyles.css';
 import MappedRoute from '../Map/MappedRoute.jsx';
 import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
+import { toggleDropdownMenu, handleDropDownChange, handleInputChange } from '../factoryFunctions/functions.js';
 
 export class Results extends Component {
   constructor(props) {
@@ -32,33 +33,30 @@ export class Results extends Component {
       hCiMenu: false,
       wCoMenu: false,
       wCiMenu: false,
-      tripSubmitted: false
+      tripSubmitted: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDropDownChange = this.handleDropDownChange.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDropDownChange = handleDropDownChange.bind(this);
+    this.handleInputChange = handleInputChange.bind(this);
     this.handleTripSubmit = this.handleTripSubmit.bind(this);
-    this.toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
+    this.toggleDropdownMenu = toggleDropdownMenu.bind(this);
     this.calculateDistance = this.calculateDistance.bind(this);
     this.getCounties = this.getCounties.bind(this);
   }
 
   componentDidMount() {
     this.getCounties();
+    console.log('THIS IS toggleDropdownMenu: ', this.toggleDropdownMenu);
   };
 
   getCounties() {
     axios
       .get('/api/counties')
       .then(({data}) => {
-        this.setState({
-          counties: data
-        })
+        this.setState({ counties: data })
       })
-      .catch(err => {
-        console.log('Error getting county data', err);
-      });
+      .catch(err => console.log('Error getting county data', err));
   }
 
   calculateDistance() {
@@ -82,27 +80,6 @@ export class Results extends Component {
     }.bind(this));
   }
 
-  toggleDropdownMenu(event) {
-    this.setState({
-      [event.target.id]: !this.state[event.target.id]
-    })
-  }
-
-  handleDropDownChange(e) {
-    const keyName = e.target.getAttribute('keyName');
-    const dropDown = e.target.getAttribute('list');
-    this.setState({
-      [keyName]: event.target.innerHTML,
-      [dropDown]: !this.state[dropDown]
-    });
-  }
-
-  handleInputChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
   handleTripSubmit(e) {
     e.preventDefault();
 
@@ -112,15 +89,9 @@ export class Results extends Component {
 
     axios
       .post('/api/scenariosDev', {userName, email, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
-      .then(() => {
-        console.log('success posting data')
-      })
-      .then(this.setState({
-        tripSubmitted: true
-      }))
-      .catch(err => {
-        console.log('Error posting info')
-      });
+      .then(() => console.log('success posting data'))
+      .then(this.setState({ tripSubmitted: true }))
+      .catch(err => console.log('Error posting info'));
   }
 
   handleSubmit(event) {
@@ -147,14 +118,12 @@ export class Results extends Component {
         }
       })
       .then(this.calculateDistance)
-      .catch(err => {
-        console.log('Error getting data', err)
-      });
+      .catch(err => console.log('Error getting data', err));
   }
 
   render() {
 
-    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
+    const {counties, costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
 
     const carObj = {
       dailyGasCost: dailyGasCost,
@@ -174,7 +143,7 @@ export class Results extends Component {
 
         <UserForm 
           className={MapStyles.formContainer}
-          counties={this.state.counties} 
+          counties={counties} 
           lookupSubmit={this.handleSubmit}
           handleDropDownChange={this.handleDropDownChange}
           handleInputChange={this.handleInputChange}
