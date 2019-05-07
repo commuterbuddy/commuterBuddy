@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import { googleMapsToken } from '../../../../config.js';
 import axios from 'axios';
@@ -8,52 +8,59 @@ import UserForm from '../UserForm/UserForm.jsx';
 import Statistics from '../Statistics/Statistics.jsx';
 import { toggleDropdownMenu, handleDropDownChange, handleInputChange } from '../factoryFunctions/functions.js';
 
-const Results = (props) => {
-    // this.state = {
-    //   counties: {},
-    //   startCoords: undefined,
-    //   endCoords: undefined,
-    //   route: [],
-    //   homeCounty: '',
-    //   workCounty: '',
-    //   startCity: '',
-    //   endCity: '',
-    //   mpg: undefined,
-    //   distance: undefined,
-    //   lyftRides: [],
-    //   uberRides: [],
-    //   birdPrice: undefined,
-    //   dailyGasCost: undefined,
-    //   costPerGallon: undefined,
-    //   tripName: '',
-    //   userName: '',
-    //   hCoMenu: false,
-    //   hCiMenu: false,
-    //   wCoMenu: false,
-    //   wCiMenu: false,
-    //   tripSubmitted: false,
-    // };
-  
-  const [counties, setCounties] = useState({});
+export class Results extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counties: {},
+      startCoords: undefined,
+      endCoords: undefined,
+      route: [],
+      homeCounty: '',
+      workCounty: '',
+      startCity: '',
+      endCity: '',
+      mpg: undefined,
+      distance: undefined,
+      lyftRides: [],
+      uberRides: [],
+      birdPrice: undefined,
+      dailyGasCost: undefined,
+      costPerGallon: undefined,
+      tripName: '',
+      userName: '',
+      hCoMenu: false,
+      hCiMenu: false,
+      wCoMenu: false,
+      wCiMenu: false,
+      tripSubmitted: false,
+    };
 
-  useEffect(() => {
-    getCounties();
-    console.log('THIS IS toggleDropdownMenu: ', toggleDropdownMenu);
-  });
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDropDownChange = handleDropDownChange.bind(this);
+    this.handleInputChange = handleInputChange.bind(this);
+    this.handleTripSubmit = this.handleTripSubmit.bind(this);
+    this.toggleDropdownMenu = toggleDropdownMenu.bind(this);
+    this.calculateDistance = this.calculateDistance.bind(this);
+    this.getCounties = this.getCounties.bind(this);
+  }
 
-  const getCounties = () => {
+  componentDidMount() {
+    this.getCounties();
+    console.log('THIS IS toggleDropdownMenu: ', this.toggleDropdownMenu);
+  };
+
+  getCounties() {
     axios
       .get('/api/counties')
       .then(({data}) => {
-        setCounties({ counties: data })
+        this.setState({ counties: data })
       })
-      .catch(err => {
-        console.log('Error getting county data', err);
-      });
-  };
+      .catch(err => console.log('Error getting county data', err));
+  }
 
   calculateDistance() {
-    const { google } = props;
+    const { google } = this.props;
     var directionsService = new google.maps.DirectionsService();
 
     const request = {
@@ -82,15 +89,9 @@ const Results = (props) => {
 
     axios
       .post('/api/scenariosDev', {userName, email, tripName, startCity, endCity, birdPrice, lyftRides, uberRides, dailyGasCost, costPerGallon})
-      .then(() => {
-        console.log('success posting data')
-      })
-      .then(this.setState({
-        tripSubmitted: true
-      }))
-      .catch(err => {
-        console.log('Error posting info')
-      });
+      .then(() => console.log('success posting data'))
+      .then(this.setState({ tripSubmitted: true }))
+      .catch(err => console.log('Error posting info'));
   }
 
   handleSubmit(event) {
@@ -117,14 +118,12 @@ const Results = (props) => {
         }
       })
       .then(this.calculateDistance)
-      .catch(err => {
-        console.log('Error getting data', err)
-      });
+      .catch(err => console.log('Error getting data', err));
   }
 
   render() {
 
-    const {costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
+    const {counties, costPerGallon, dailyGasCost, birdPrice, lyftRides, uberRides, distance, startCoords, endCoords, tripSubmitted, route} = this.state;
 
     const carObj = {
       dailyGasCost: dailyGasCost,
@@ -144,7 +143,7 @@ const Results = (props) => {
 
         <UserForm 
           className={MapStyles.formContainer}
-          counties={this.state.counties} 
+          counties={counties} 
           lookupSubmit={this.handleSubmit}
           handleDropDownChange={this.handleDropDownChange}
           handleInputChange={this.handleInputChange}
